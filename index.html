@@ -4,121 +4,221 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nova Pontis | Cooperativa Sociale</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0f172a;color:#e2e8f0;scroll-behavior:smooth}
+body{
+font-family:'Poppins',sans-serif;
+background:#f8fafc;
+color:#1e293b;
+overflow-x:hidden;
+}
 
+/* NAVBAR */
 header{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(15,23,42,0.9);
-backdrop-filter:blur(10px);
+background:white;
+box-shadow:0 4px 20px rgba(0,0,0,0.05);
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 60px;
-z-index:1000
+padding:18px 8%;
+z-index:1000;
 }
 
-.logo{font-weight:700;font-size:22px;color:#38bdf8}
+.logo{
+font-weight:700;
+font-size:22px;
+color:#0ea5a4;
+letter-spacing:1px;
+}
 
 nav a{
 margin-left:30px;
 text-decoration:none;
-color:#e2e8f0;
+color:#334155;
 font-weight:500;
-transition:0.3s
+position:relative;
 }
 
-nav a:hover{color:#38bdf8}
+nav a::after{
+content:"";
+position:absolute;
+bottom:-6px;
+left:0;
+width:0%;
+height:2px;
+background:#0ea5a4;
+transition:0.3s;
+}
+
+nav a:hover::after{
+width:100%;
+}
 
 section{
+padding:120px 8%;
 min-height:100vh;
-padding:140px 10%;
 display:flex;
 flex-direction:column;
-justify-content:center
+justify-content:center;
 }
 
+/* HERO */
 .hero{
-background:linear-gradient(120deg,#0f172a,#1e293b);
+display:grid;
+grid-template-columns:1fr 1fr;
+align-items:center;
+gap:60px;
 }
 
-.hero h1{
-font-size:56px;
+.hero-text h1{
+font-size:54px;
+line-height:1.1;
 margin-bottom:20px;
-opacity:0;
-transform:translateY(40px);
-animation:fadeUp 1s forwards
 }
 
-.hero p{
-font-size:20px;
-max-width:700px;
-margin-bottom:40px;
-opacity:0;
-animation:fadeUp 1s 0.3s forwards
+.hero-text p{
+font-size:18px;
+margin-bottom:30px;
+color:#475569;
 }
 
 .btn{
-padding:14px 28px;
-border-radius:10px;
-background:#38bdf8;
-color:#0f172a;
+padding:14px 30px;
+border-radius:12px;
+background:#0ea5a4;
+color:white;
 font-weight:600;
 text-decoration:none;
+display:inline-block;
 transition:0.3s;
-display:inline-block
 }
 
-.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(56,189,248,0.4)}
+.btn:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.hero-visual{
+height:420px;
+border-radius:24px;
+background:linear-gradient(135deg,#14b8a6,#0ea5a4);
+position:relative;
+overflow:hidden;
+}
+
+.hero-visual::before{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background:radial-gradient(circle,rgba(255,255,255,0.4),transparent 60%);
+animation:float 8s infinite linear;
+}
+
+@keyframes float{
+0%{transform:translate(-20%,-20%)}
+50%{transform:translate(10%,10%)}
+100%{transform:translate(-20%,-20%)}
+}
+
+/* SECTIONS */
+.section-title{
+font-size:36px;
+margin-bottom:40px;
+}
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:40px;
-margin-top:60px
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
 }
 
 .card{
-background:#1e293b;
+background:white;
 padding:30px;
-border-radius:16px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
 transition:0.4s;
 transform:translateY(40px);
-opacity:0
+opacity:0;
 }
 
-.card:hover{transform:translateY(-10px) scale(1.02)}
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
 
-.card h3{margin-bottom:15px;color:#38bdf8}
+.card h3{
+margin-bottom:12px;
+color:#0ea5a4;
+}
 
-.about{background:#020617}
+.card p{
+color:#475569;
+line-height:1.6;
+}
 
+/* VALUES */
+.values{
+background:#f1f5f9;
+border-radius:30px;
+}
+
+/* CONTACT */
 .contact{
 text-align:center;
-background:linear-gradient(120deg,#1e293b,#020617)
+background:linear-gradient(135deg,#0ea5a4,#14b8a6);
+color:white;
+border-radius:30px;
 }
+
+.contact p{margin:20px 0}
 
 footer{
-padding:30px;
+margin-top:80px;
+padding:40px;
 text-align:center;
-background:#020617;
-font-size:14px
+color:#64748b;
+font-size:14px;
 }
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(40px)}
-to{opacity:1;transform:translateY(0)}
+/* SCROLL ANIMATION */
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s;
 }
 
-.show{
-opacity:1 !important;
-transform:translateY(0) !important;
-transition:1s
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* PARALLAX SHAPE */
+.shape{
+position:absolute;
+width:300px;
+height:300px;
+border-radius:50%;
+background:rgba(20,184,166,0.15);
+filter:blur(60px);
+}
+
+.shape.one{top:-100px;left:-100px}
+.shape.two{bottom:-120px;right:-80px}
+
+@media(max-width:900px){
+.hero{
+grid-template-columns:1fr;
+}
+.hero-visual{
+height:300px;
+}
 }
 
 </style>
@@ -137,66 +237,77 @@ transition:1s
 </header>
 
 <section class="hero">
-<h1>Costruiamo ponti tra artigianato, comunità e istituzioni</h1>
-<p>Nova Pontis è una cooperativa sociale che promuove l'artigianato come strumento di inclusione sociale, sviluppo del territorio e collaborazione con enti pubblici e istituzioni.</p>
-<a class="btn" href="#chi">Scopri di più</a>
+<div class="hero-text">
+<h1>Costruire ponti tra artigianato, persone e istituzioni</h1>
+<p>Nova Pontis è una cooperativa sociale che sviluppa progetti di artigianato, inclusione lavorativa e collaborazione istituzionale per creare valore nel territorio.</p>
+<a class="btn" href="#attivita">Scopri i nostri progetti</a>
+</div>
+
+<div class="hero-visual">
+<div class="shape one"></div>
+<div class="shape two"></div>
+</div>
 </section>
 
-<section id="chi" class="about">
-<h2>Chi siamo</h2>
-<p style="margin-top:20px;max-width:800px;line-height:1.7">Nova Pontis nasce con l'obiettivo di creare connessioni tra persone, competenze e istituzioni. Attraverso progetti artigianali e sociali promuoviamo l'inclusione lavorativa, la valorizzazione delle tradizioni e lo sviluppo sostenibile delle comunità locali.</p>
+<section id="chi">
+<h2 class="section-title">Chi siamo</h2>
+<p class="reveal" style="max-width:800px;line-height:1.8;color:#475569">
+Nova Pontis nasce con l'obiettivo di creare connessioni tra persone, competenze e istituzioni.
+Attraverso attività artigianali e sociali promuoviamo inclusione lavorativa, partecipazione
+comunitaria e sviluppo sostenibile del territorio.
+</p>
 </section>
 
 <section id="attivita">
-<h2>Le nostre attività</h2>
+<h2 class="section-title">Le nostre attività</h2>
 
 <div class="grid">
 
-<div class="card">
+<div class="card reveal">
 <h3>Artigianato sociale</h3>
-<p>Laboratori e produzioni artigianali che coinvolgono persone in percorsi di reinserimento lavorativo e formazione professionale.</p>
+<p>Laboratori e produzioni che valorizzano il lavoro manuale e favoriscono percorsi di formazione e reinserimento lavorativo.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
 <h3>Inclusione sociale</h3>
-<p>Progetti dedicati all'integrazione di persone fragili attraverso lavoro, formazione e partecipazione alla vita comunitaria.</p>
+<p>Progetti dedicati all'integrazione di persone fragili attraverso attività produttive e partecipazione alla vita della comunità.</p>
 </div>
 
-<div class="card">
-<h3>Collaborazioni istituzionali</h3>
-<p>Partnership con enti pubblici, comuni e istituzioni per lo sviluppo di iniziative sociali e territoriali.</p>
+<div class="card reveal">
+<h3>Rapporto istituzionale</h3>
+<p>Collaborazioni con enti pubblici e amministrazioni locali per realizzare iniziative sociali e territoriali.</p>
 </div>
 
 </div>
 </section>
 
-<section id="valori" class="about">
-<h2>I nostri valori</h2>
+<section id="valori" class="values">
+<h2 class="section-title">I nostri valori</h2>
 
 <div class="grid">
 
-<div class="card">
+<div class="card reveal">
 <h3>Inclusione</h3>
-<p>Crediamo nel valore delle persone e nelle opportunità per tutti.</p>
+<p>Crediamo in una società in cui ogni persona possa trovare opportunità e dignità attraverso il lavoro.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
 <h3>Comunità</h3>
-<p>Lavoriamo per rafforzare i legami sociali e il tessuto locale.</p>
+<p>Rafforzare il tessuto sociale locale creando relazioni tra cittadini, istituzioni e territorio.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
 <h3>Innovazione sociale</h3>
-<p>Unire tradizione artigiana e nuovi modelli di sviluppo sostenibile.</p>
+<p>Unire tradizione artigianale e nuove idee per sviluppare modelli sostenibili di cooperazione.</p>
 </div>
 
 </div>
 </section>
 
 <section id="contatti" class="contact">
-<h2>Contattaci</h2>
-<p style="margin:20px 0">Vuoi collaborare con Nova Pontis o saperne di più sui nostri progetti?</p>
-<a class="btn" href="mailto:info@novapontis.it">Scrivici</a>
+<h2 class="section-title">Collaboriamo insieme</h2>
+<p>Se sei un ente, un'istituzione o un'organizzazione interessata ai nostri progetti contattaci.</p>
+<a class="btn" href="mailto:info@novapontis.it">Contattaci</a>
 </section>
 
 <footer>
@@ -205,15 +316,21 @@ transition:1s
 
 <script>
 
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if(entry.isIntersecting){
-entry.target.classList.add('show')
-}
-})
-})
+function reveal(){
+var reveals=document.querySelectorAll('.reveal');
 
-document.querySelectorAll('.card').forEach(el=>observer.observe(el))
+for(var i=0;i<reveals.length;i++){
+var windowHeight=window.innerHeight;
+var elementTop=reveals[i].getBoundingClientRect().top;
+var elementVisible=100;
+
+if(elementTop < windowHeight - elementVisible){
+reveals[i].classList.add('active');
+}
+}
+}
+
+window.addEventListener('scroll',reveal);
 
 </script>
 
