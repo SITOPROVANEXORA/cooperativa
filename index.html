@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Pontis | Cooperativa Sociale</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0f172a;color:#e2e8f0;scroll-behavior:smooth}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(15,23,42,0.9);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+z-index:1000
+}
+
+.logo{font-weight:700;font-size:22px;color:#38bdf8}
+
+nav a{
+margin-left:30px;
+text-decoration:none;
+color:#e2e8f0;
+font-weight:500;
+transition:0.3s
+}
+
+nav a:hover{color:#38bdf8}
+
+section{
+min-height:100vh;
+padding:140px 10%;
+display:flex;
+flex-direction:column;
+justify-content:center
+}
+
+.hero{
+background:linear-gradient(120deg,#0f172a,#1e293b);
+}
+
+.hero h1{
+font-size:56px;
+margin-bottom:20px;
+opacity:0;
+transform:translateY(40px);
+animation:fadeUp 1s forwards
+}
+
+.hero p{
+font-size:20px;
+max-width:700px;
+margin-bottom:40px;
+opacity:0;
+animation:fadeUp 1s 0.3s forwards
+}
+
+.btn{
+padding:14px 28px;
+border-radius:10px;
+background:#38bdf8;
+color:#0f172a;
+font-weight:600;
+text-decoration:none;
+transition:0.3s;
+display:inline-block
+}
+
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(56,189,248,0.4)}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+margin-top:60px
+}
+
+.card{
+background:#1e293b;
+padding:30px;
+border-radius:16px;
+transition:0.4s;
+transform:translateY(40px);
+opacity:0
+}
+
+.card:hover{transform:translateY(-10px) scale(1.02)}
+
+.card h3{margin-bottom:15px;color:#38bdf8}
+
+.about{background:#020617}
+
+.contact{
+text-align:center;
+background:linear-gradient(120deg,#1e293b,#020617)
+}
+
+footer{
+padding:30px;
+text-align:center;
+background:#020617;
+font-size:14px
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.show{
+opacity:1 !important;
+transform:translateY(0) !important;
+transition:1s
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Nova Pontis</div>
+<nav>
+<a href="#chi">Chi siamo</a>
+<a href="#attivita">Attività</a>
+<a href="#valori">Valori</a>
+<a href="#contatti">Contatti</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Costruiamo ponti tra artigianato, comunità e istituzioni</h1>
+<p>Nova Pontis è una cooperativa sociale che promuove l'artigianato come strumento di inclusione sociale, sviluppo del territorio e collaborazione con enti pubblici e istituzioni.</p>
+<a class="btn" href="#chi">Scopri di più</a>
+</section>
+
+<section id="chi" class="about">
+<h2>Chi siamo</h2>
+<p style="margin-top:20px;max-width:800px;line-height:1.7">Nova Pontis nasce con l'obiettivo di creare connessioni tra persone, competenze e istituzioni. Attraverso progetti artigianali e sociali promuoviamo l'inclusione lavorativa, la valorizzazione delle tradizioni e lo sviluppo sostenibile delle comunità locali.</p>
+</section>
+
+<section id="attivita">
+<h2>Le nostre attività</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Artigianato sociale</h3>
+<p>Laboratori e produzioni artigianali che coinvolgono persone in percorsi di reinserimento lavorativo e formazione professionale.</p>
+</div>
+
+<div class="card">
+<h3>Inclusione sociale</h3>
+<p>Progetti dedicati all'integrazione di persone fragili attraverso lavoro, formazione e partecipazione alla vita comunitaria.</p>
+</div>
+
+<div class="card">
+<h3>Collaborazioni istituzionali</h3>
+<p>Partnership con enti pubblici, comuni e istituzioni per lo sviluppo di iniziative sociali e territoriali.</p>
+</div>
+
+</div>
+</section>
+
+<section id="valori" class="about">
+<h2>I nostri valori</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Inclusione</h3>
+<p>Crediamo nel valore delle persone e nelle opportunità per tutti.</p>
+</div>
+
+<div class="card">
+<h3>Comunità</h3>
+<p>Lavoriamo per rafforzare i legami sociali e il tessuto locale.</p>
+</div>
+
+<div class="card">
+<h3>Innovazione sociale</h3>
+<p>Unire tradizione artigiana e nuovi modelli di sviluppo sostenibile.</p>
+</div>
+
+</div>
+</section>
+
+<section id="contatti" class="contact">
+<h2>Contattaci</h2>
+<p style="margin:20px 0">Vuoi collaborare con Nova Pontis o saperne di più sui nostri progetti?</p>
+<a class="btn" href="mailto:info@novapontis.it">Scrivici</a>
+</section>
+
+<footer>
+© 2026 Nova Pontis Cooperativa Sociale
+</footer>
+
+<script>
+
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add('show')
+}
+})
+})
+
+document.querySelectorAll('.card').forEach(el=>observer.observe(el))
+
+</script>
+
+</body>
+</html>
