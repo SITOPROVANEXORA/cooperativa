@@ -5,114 +5,128 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nova Pontis | Cooperativa Sociale</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <style>
 
+:root{
+--primary:#0f766e;
+--secondary:#14b8a6;
+--dark:#0f172a;
+--text:#334155;
+--bg:#f8fafc;
+}
+
+.dark{
+--bg:#020617;
+--text:#e2e8f0;
+}
+
 body{
-font-family:Inter, sans-serif;
+font-family:Inter,sans-serif;
 margin:0;
-background:#f8fafc;
-color:#1e293b;
+background:var(--bg);
+color:var(--text);
 overflow-x:hidden;
+transition:.3s;
+}
+
+*{box-sizing:border-box}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:2000;
+font-weight:700;
+font-size:22px;
 }
 
 /* NAVBAR */
+
 header{
 position:fixed;
-top:0;
 width:100%;
+top:0;
 background:white;
-box-shadow:0 5px 30px rgba(0,0,0,0.05);
+padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:18px 6%;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
 z-index:1000;
 }
 
 .logo{
+font-weight:800;
 font-size:22px;
-font-weight:700;
-color:#0f766e;
+color:var(--primary);
 }
 
 nav ul{
 display:flex;
 list-style:none;
 gap:30px;
-align-items:center;
 margin:0;
 padding:0;
+align-items:center;
 }
 
 nav a{
 text-decoration:none;
-color:#334155;
+color:var(--text);
 font-weight:500;
 }
 
-/* MEGA MENU */
-.dropdown{
-position:relative;
-}
-
-.mega{
-position:absolute;
-top:40px;
-left:0;
-background:white;
-box-shadow:0 10px 40px rgba(0,0,0,0.1);
-padding:30px;
-border-radius:12px;
-display:none;
-width:400px;
-}
-
-.dropdown:hover .mega{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+.toggle{
+cursor:pointer;
+font-size:18px;
 }
 
 /* HERO */
+
 .hero{
 height:100vh;
 display:flex;
 align-items:center;
 padding:0 6%;
-background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url("https://images.unsplash.com/photo-1521790797524-b2497295b8a0");
+color:white;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url("https://images.unsplash.com/photo-1521790797524-b2497295b8a0");
 background-size:cover;
 background-position:center;
-color:white;
 }
 
 .hero h1{
 font-size:64px;
 max-width:700px;
-line-height:1.1;
 }
 
 .hero p{
-font-size:18px;
-max-width:600px;
-margin:25px 0;
+max-width:500px;
+margin:20px 0;
 }
 
 .btn{
-background:#0f766e;
+background:var(--secondary);
 padding:14px 32px;
 border-radius:12px;
-text-decoration:none;
 color:white;
+text-decoration:none;
 font-weight:600;
-display:inline-block;
 }
 
-/* SECTIONS */
 section{
 padding:120px 6%;
 }
@@ -122,7 +136,8 @@ font-size:40px;
 margin-bottom:50px;
 }
 
-/* GRID */
+/* CARDS */
+
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -133,19 +148,20 @@ gap:30px;
 background:white;
 padding:30px;
 border-radius:18px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+transition:.4s;
 }
 
 .card:hover{
-transform:translateY(-12px);
+transform:translateY(-10px);
 }
 
 /* STORY */
+
 .story{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:60px;
+gap:70px;
 align-items:center;
 }
 
@@ -154,7 +170,8 @@ width:100%;
 border-radius:20px;
 }
 
-/* COUNTERS */
+/* STATS */
+
 .stats{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -163,75 +180,87 @@ text-align:center;
 }
 
 .stat-number{
-font-size:48px;
-font-weight:700;
-color:#0f766e;
+font-size:52px;
+font-weight:800;
+color:var(--primary);
+}
+
+/* PROJECT SLIDER */
+
+.swiper{
+width:100%;
+padding-bottom:50px;
+}
+
+.project{
+background:white;
+border-radius:16px;
+padding:30px;
+box-shadow:0 10px 25px rgba(0,0,0,.05);
 }
 
 /* REVIEWS */
+
 .review{
 background:white;
 padding:25px;
 border-radius:15px;
-box-shadow:0 10px 20px rgba(0,0,0,0.05);
+box-shadow:0 10px 20px rgba(0,0,0,.05);
 }
 
 /* FAQ */
+
 .faq-item{
 background:white;
-margin-bottom:10px;
 border-radius:10px;
+margin-bottom:10px;
 overflow:hidden;
 }
 
 .faq-question{
 padding:18px;
-cursor:pointer;
 font-weight:600;
+cursor:pointer;
 }
 
 .faq-answer{
 display:none;
 padding:18px;
-color:#475569;
 }
 
-/* SIDEBAR */
-.sidebar{
-position:fixed;
-right:-320px;
-top:0;
-width:320px;
-height:100%;
-background:white;
-box-shadow:-10px 0 40px rgba(0,0,0,0.1);
-padding:40px;
-transition:0.4s;
-z-index:1200;
+/* MAP */
+
+.map{
+height:400px;
+background:#cbd5f5;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:600;
 }
 
-.sidebar.active{
-right:0;
-}
-
-.menu-btn{
-cursor:pointer;
-font-size:24px;
-}
+/* FOOTER */
 
 footer{
-padding:50px;
-text-align:center;
-color:#64748b;
+padding:60px;
+background:#020617;
+color:white;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:40px;
+}
+
+.footer-grid h4{
+margin-top:0;
 }
 
 @media(max-width:900px){
-.story{
-grid-template-columns:1fr;
-}
-.hero h1{
-font-size:42px;
-}
+.hero h1{font-size:42px}
+.story{grid-template-columns:1fr}
 }
 
 </style>
@@ -239,103 +268,73 @@ font-size:42px;
 
 <body>
 
+<div id="loader">Caricamento...</div>
+
 <header>
 <div class="logo">Nova Pontis</div>
 
 <nav>
 <ul>
 <li><a href="#">Home</a></li>
-
-<li class="dropdown">
-<a href="#">Progetti</a>
-
-<div class="mega">
-<div>
-<strong>Inclusione</strong>
-<p>Percorsi lavorativi</p>
-<p>Formazione sociale</p>
-</div>
-
-<div>
-<strong>Artigianato</strong>
-<p>Laboratori</p>
-<p>Produzioni locali</p>
-</div>
-</div>
-
-</li>
-
-<li><a href="#chi">Chi siamo</a></li>
+<li><a href="#progetti">Progetti</a></li>
+<li><a href="#impatto">Impatto</a></li>
 <li><a href="#contatti">Contatti</a></li>
-
-<li class="menu-btn" onclick="toggleMenu()">☰</li>
-
+<li class="toggle" onclick="toggleDark()">🌙</li>
 </ul>
 </nav>
 </header>
 
-<div class="sidebar" id="sidebar">
-
-<h3>Menu rapido</h3>
-<p>Progetti sociali</p>
-<p>Lavora con noi</p>
-<p>Partner istituzionali</p>
-<p>Bilancio sociale</p>
-
-</div>
-
 <section class="hero">
 <div>
-<h1>Costruire ponti tra persone, artigianato e istituzioni</h1>
-<p>Nova Pontis sviluppa progetti sociali e lavorativi che generano valore per le comunità e il territorio.</p>
-<a class="btn">Scopri i progetti</a>
+<h1>Costruire ponti tra persone, lavoro e comunità</h1>
+<p>Nova Pontis è una cooperativa sociale che promuove inclusione, artigianato e innovazione sociale nel territorio.</p>
+<a class="btn">Scopri di più</a>
 </div>
 </section>
 
-<section id="chi">
+<section>
 <h2 class="title">Chi siamo</h2>
 
 <div class="story">
-
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+<img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
 
 <div>
 <p>
-Nova Pontis è una cooperativa sociale che unisce artigianato, inclusione lavorativa e collaborazione istituzionale.
+Nova Pontis sviluppa progetti sociali che uniscono formazione, lavoro e comunità.
 
-Creiamo percorsi concreti per valorizzare le competenze delle persone e generare impatto positivo nelle comunità.
+Attraverso l'artigianato e l'inclusione lavorativa generiamo opportunità concrete.
 </p>
 </div>
+</div>
+</section>
 
+<section id="progetti">
+<h2 class="title">I nostri progetti</h2>
+
+<div class="swiper">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide project">
+<h3>Laboratori artigianali</h3>
+<p>Percorsi di formazione professionale.</p>
+</div>
+
+<div class="swiper-slide project">
+<h3>Inclusione lavorativa</h3>
+<p>Inserimento nel mondo del lavoro.</p>
+</div>
+
+<div class="swiper-slide project">
+<h3>Rigenerazione urbana</h3>
+<p>Progetti sociali sul territorio.</p>
+</div>
+
+</div>
 </div>
 
 </section>
 
-<section>
-<h2 class="title">Le nostre attività</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Artigianato sociale</h3>
-<p>Laboratori e produzioni artigianali per l'inclusione lavorativa.</p>
-</div>
-
-<div class="card">
-<h3>Inclusione</h3>
-<p>Percorsi di formazione e inserimento nel mondo del lavoro.</p>
-</div>
-
-<div class="card">
-<h3>Collaborazioni istituzionali</h3>
-<p>Progetti con enti pubblici e organizzazioni territoriali.</p>
-</div>
-
-</div>
-
-</section>
-
-<section>
+<section id="impatto">
 <h2 class="title">Il nostro impatto</h2>
 
 <div class="stats">
@@ -347,16 +346,23 @@ Creiamo percorsi concreti per valorizzare le competenze delle persone e generare
 
 <div>
 <div class="stat-number" data-target="35">0</div>
-<p>Progetti attivi</p>
+<p>Progetti</p>
 </div>
 
 <div>
 <div class="stat-number" data-target="18">0</div>
-<p>Partner istituzionali</p>
+<p>Partner</p>
 </div>
 
 </div>
 
+<canvas id="impactChart" height="120"></canvas>
+
+</section>
+
+<section>
+<h2 class="title">Dove operiamo</h2>
+<div class="map">Mappa dei progetti sul territorio</div>
 </section>
 
 <section>
@@ -364,20 +370,9 @@ Creiamo percorsi concreti per valorizzare le competenze delle persone e generare
 
 <div class="grid">
 
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>Un progetto sociale concreto e innovativo.</p>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐☆
-<p>Grande attenzione alle persone e al territorio.</p>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>Collaborazione istituzionale molto efficace.</p>
-</div>
+<div class="review">⭐⭐⭐⭐⭐<p>Un progetto sociale innovativo.</p></div>
+<div class="review">⭐⭐⭐⭐☆<p>Grande attenzione alle persone.</p></div>
+<div class="review">⭐⭐⭐⭐⭐<p>Esempio positivo di cooperazione.</p></div>
 
 </div>
 
@@ -388,70 +383,108 @@ Creiamo percorsi concreti per valorizzare le competenze delle persone e generare
 
 <div class="faq-item">
 <div class="faq-question" onclick="faq(this)">Cos'è Nova Pontis?</div>
-<div class="faq-answer">Una cooperativa sociale dedicata all'inclusione e all'artigianato.</div>
+<div class="faq-answer">Una cooperativa sociale dedicata all'inclusione.</div>
 </div>
 
 <div class="faq-item">
 <div class="faq-question" onclick="faq(this)">Collaborate con enti pubblici?</div>
-<div class="faq-answer">Sì, realizziamo progetti con amministrazioni e istituzioni.</div>
+<div class="faq-answer">Sì, collaboriamo con istituzioni e organizzazioni.</div>
 </div>
 
 </section>
 
 <section id="contatti">
 <h2 class="title">Contattaci</h2>
-<p>Vuoi collaborare con noi o sviluppare un progetto?</p>
-<a class="btn" href="mailto:info@novapontis.it">Scrivici</a>
+<a class="btn" href="mailto:info@novapontis.it">Invia email</a>
 </section>
 
 <footer>
-© 2026 Nova Pontis Cooperativa Sociale
+
+<div class="footer-grid">
+
+<div>
+<h4>Nova Pontis</h4>
+<p>Cooperativa sociale impegnata nello sviluppo del territorio.</p>
+</div>
+
+<div>
+<h4>Link</h4>
+<p>Progetti</p>
+<p>Chi siamo</p>
+<p>Contatti</p>
+</div>
+
+<div>
+<h4>Contatti</h4>
+<p>info@novapontis.it</p>
+<p>Italia</p>
+</div>
+
+</div>
+
 </footer>
 
 <script>
 
-function toggleMenu(){
-document.getElementById("sidebar").classList.toggle("active");
-}
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+},800);
+});
 
 function faq(el){
-let ans = el.nextElementSibling;
-ans.style.display = ans.style.display === "block" ? "none" : "block";
+let ans=el.nextElementSibling;
+ans.style.display=ans.style.display==='block'?'none':'block';
 }
 
-/* COUNTER */
-const counters = document.querySelectorAll('.stat-number');
-
-counters.forEach(counter=>{
-const update = ()=>{
-const target = +counter.getAttribute('data-target');
-const count = +counter.innerText;
-const inc = target/100;
-
-if(count < target){
-counter.innerText = Math.ceil(count + inc);
-setTimeout(update,20);
-}else{
-counter.innerText = target;
+function toggleDark(){
+document.body.classList.toggle("dark");
 }
+
+/* counters */
+
+document.querySelectorAll('.stat-number').forEach(counter=>{
+const update=()=>{
+const target=+counter.dataset.target
+const count=+counter.innerText
+const inc=target/100
+
+if(count<target){
+counter.innerText=Math.ceil(count+inc)
+setTimeout(update,20)
+}else counter.innerText=target
 }
-update();
-});
+update()
+})
 
-/* GSAP SCROLL */
+/* slider */
 
-gsap.registerPlugin(ScrollTrigger);
+new Swiper('.swiper',{
+loop:true,
+slidesPerView:1,
+spaceBetween:20,
+autoplay:{delay:3000}
+})
 
-gsap.utils.toArray(".card").forEach(card=>{
+/* chart */
 
-gsap.from(card,{
-scrollTrigger:card,
-y:80,
-opacity:0,
-duration:1
-});
+new Chart(document.getElementById('impactChart'),{
+type:'bar',
+data:{
+labels:['2021','2022','2023','2024'],
+datasets:[{label:'Persone coinvolte',data:[40,70,95,120]}]
+}
+})
 
-});
+/* GSAP animations */
+
+gsap.registerPlugin(ScrollTrigger)
+
+gsap.utils.toArray('.card,.review,.project').forEach(el=>{
+
+gsap.from(el,{scrollTrigger:el,y:80,opacity:0,duration:1})
+
+})
 
 </script>
 
