@@ -82,8 +82,9 @@ nav a{text-decoration:none;color:var(--secondary);font-weight:500}
 .mega{
 position:absolute;
 top:40px;
-left:0;
-width:600px;
+right:0;
+width:520px;
+max-width:90vw;
 background:white;
 padding:30px;
 border-radius:14px;
@@ -288,8 +289,16 @@ La cooperativa sviluppa progetti di inclusione sociale, laboratori artigianali e
 
 <section id="contatti">
 <h2 class="title">Contattaci</h2>
-<p>Per informazioni sui progetti o collaborazioni è possibile inviare una richiesta tramite email.</p>
-<a class="btn" href="mailto:facebookcafnexora1@gmail.com">Invia una richiesta di informazioni</a>
+<p>Per informazioni sui progetti, collaborazioni istituzionali o percorsi di inclusione lavorativa è possibile inviare una richiesta direttamente tramite email.</p>
+
+<form onsubmit="sendEmail(event)" style="max-width:520px;display:flex;flex-direction:column;gap:15px">
+<input required placeholder="Nome" id="name" style="padding:12px;border-radius:8px;border:1px solid #cbd5e1">
+<input required type="email" placeholder="Email" id="email" style="padding:12px;border-radius:8px;border:1px solid #cbd5e1">
+<textarea required placeholder="Messaggio" id="message" rows="5" style="padding:12px;border-radius:8px;border:1px solid #cbd5e1"></textarea>
+<button class="btn" type="submit">Invia richiesta</button>
+</form>
+
+<p style="margin-top:15px;font-size:14px;color:#475569">L'email verrà inviata a: facebookcafnexora1@gmail.com</p>
 </section>
 
 <footer>
@@ -393,6 +402,30 @@ const slider=document.getElementById('monthSlider')
 const label=document.getElementById('monthLabel')
 
 label.innerText="Mese selezionato: "+months[0]
+
+slider.oninput=()=>{
+ const i=slider.value
+ chart.data.datasets[0].data=monthlyData[i]
+ chart.update()
+ label.innerText="Mese selezionato: "+months[i]
+}
+
+/* invio email */
+
+function sendEmail(e){
+ e.preventDefault()
+
+ const name=document.getElementById('name').value
+ const email=document.getElementById('email').value
+ const message=document.getElementById('message').value
+
+ const subject=encodeURIComponent("Richiesta informazioni - sito web Nova Pontis")
+ const body=encodeURIComponent(
+ `Nome: ${name}\nEmail: ${email}\n\nMessaggio:\n${message}`
+ )
+
+ window.location.href=`mailto:facebookcafnexora1@gmail.com?subject=${subject}&body=${body}`
+}
 
 slider.oninput=()=>{
  const i=slider.value
