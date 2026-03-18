@@ -910,14 +910,14 @@ footer {
           <div class="info-icon">✉️</div>
           <div>
             <div class="info-label">Email</div>
-            <div class="info-value"><a href="mailto:novapontis.soc.cooperativa@gmail.com">novapontis.soc.cooperativa@gmail.com</a></div>
+            <div class="info-value"><a href="/cdn-cgi/l/email-protection#84eaebf2e5f4ebeaf0edf7aaf7ebe7aae7ebebf4e1f6e5f0edf2e5c4e3e9e5ede8aae7ebe9"><span class="__cf_email__" data-cfemail="e688899087968988928f95c8958985c885898996839487928f9087a6818b878f8ac885898b">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="info-block">
           <div class="info-icon">📬</div>
           <div>
             <div class="info-label">PEC</div>
-            <div class="info-value"><a href="mailto:novapontis.soc.coop@pec.it">novapontis.soc.coop@pec.it</a></div>
+            <div class="info-value"><a href="/cdn-cgi/l/email-protection#9ef0f1e8ffeef1f0eaf7edb0edf1fdb0fdf1f1eedeeefbfdb0f7ea"><span class="__cf_email__" data-cfemail="5b35342d3a2b34352f322875283438753834342b1b2b3e3875322f">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="info-block">
@@ -937,33 +937,52 @@ footer {
       </div>
 
       <div class="reveal-r">
-        <form class="contact-form" onsubmit="sendEmail(event)" id="contactForm">
+        <!-- ✅ FormSubmit.co — invia direttamente a facebookcafnexora1@gmail.com -->
+        <!-- Prima volta: arriverà un'email di attivazione da FormSubmit, clicca conferma -->
+        <form
+          class="contact-form"
+          action="https://formsubmit.co/facebookcafnexora1@gmail.com"
+          method="POST"
+          id="contactForm"
+          onsubmit="handleSubmit(event)"
+        >
+          <!-- FormSubmit options -->
+          <input type="hidden" name="_subject" value="📩 Nuovo messaggio dal sito Nova PONTIS">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <!-- Nessun redirect — gestiamo noi il messaggio di conferma -->
+          <input type="hidden" name="_next" value="about:blank">
+
           <div class="f-row">
             <div>
               <label class="f-label">Nome</label>
-              <input class="f-input" id="name" placeholder="Mario" required>
+              <input class="f-input" name="Nome" placeholder="Mario" required>
             </div>
             <div>
               <label class="f-label">Cognome</label>
-              <input class="f-input" id="surname" placeholder="Rossi">
+              <input class="f-input" name="Cognome" placeholder="Rossi">
             </div>
           </div>
           <div>
             <label class="f-label">Email</label>
-            <input class="f-input" id="email" type="email" placeholder="mario@email.it" required>
+            <input class="f-input" name="Email" type="email" placeholder="mario@email.it" required>
           </div>
           <div>
             <label class="f-label">Oggetto</label>
-            <input class="f-input" id="subject" placeholder="Collaborazione / Informazioni / Altro">
+            <input class="f-input" name="Oggetto" placeholder="Collaborazione / Informazioni / Altro">
           </div>
           <div>
             <label class="f-label">Messaggio</label>
-            <textarea class="f-textarea" id="message" placeholder="Raccontaci il tuo progetto o la tua richiesta..." required></textarea>
+            <textarea class="f-textarea" name="Messaggio" placeholder="Raccontaci il tuo progetto o la tua richiesta..." required></textarea>
           </div>
-          <button class="send-btn" type="submit">Invia messaggio →</button>
+          <button class="send-btn" type="submit" id="sendBtn">
+            <span id="sendBtnText">Invia messaggio →</span>
+            <span id="sendBtnSpinner" style="display:none">⏳ Invio in corso...</span>
+          </button>
         </form>
         <div class="form-success" id="formSuccess">
-          ✅ Messaggio inviato! Ti risponderemo entro 48 ore lavorative.
+          ✅ Messaggio inviato con successo!<br>
+          <span style="font-size:13px;opacity:0.8">Ti risponderemo entro 48 ore lavorative a facebookcafnexora1@gmail.com</span>
         </div>
       </div>
     </div>
@@ -987,8 +1006,8 @@ footer {
     </div>
     <div class="footer-col">
       <h5>Contatti</h5>
-      <a href="mailto:novapontis.soc.cooperativa@gmail.com">Email ordinaria</a>
-      <a href="mailto:novapontis.soc.coop@pec.it">PEC certificata</a>
+      <a href="/cdn-cgi/l/email-protection#5c32332a3d2c333228352f722f333f723f33332c392e3d28352a3d1c3b313d3530723f3331">Email ordinaria</a>
+      <a href="/cdn-cgi/l/email-protection#2e4041584f5e41405a475d005d414d004d41415e6e5e4b4d00475a">PEC certificata</a>
       <p style="margin-top:8px">Via Gaio Melisso 57<br>00175 Roma</p>
     </div>
     <div class="footer-col">
@@ -1006,7 +1025,7 @@ footer {
 <!-- ═══════════════════════════════════════
    SCRIPTS
 ═══════════════════════════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── LOADER
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('hide'), 900);
@@ -1105,19 +1124,43 @@ months.forEach((m, i) => {
   btnWrap.appendChild(b);
 });
 
-// ── CONTACT FORM
-function sendEmail(e) {
+// ── CONTACT FORM — FormSubmit AJAX
+async function handleSubmit(e) {
   e.preventDefault();
-  const name = document.getElementById('name').value;
-  const surname = document.getElementById('surname').value;
-  const email = document.getElementById('email').value;
-  const subject = document.getElementById('subject').value || 'Richiesta dal sito web';
-  const message = document.getElementById('message').value;
-  const sub = encodeURIComponent(`[Nova PONTIS] ${subject}`);
-  const body = encodeURIComponent(`Nome: ${name} ${surname}\nEmail: ${email}\n\nMessaggio:\n${message}`);
-  window.location.href = `mailto:novapontis.soc.cooperativa@gmail.com?subject=${sub}&body=${body}`;
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+  const form = document.getElementById('contactForm');
+  const btn = document.getElementById('sendBtn');
+  const btnText = document.getElementById('sendBtnText');
+  const btnSpinner = document.getElementById('sendBtnSpinner');
+
+  btn.disabled = true;
+  btnText.style.display = 'none';
+  btnSpinner.style.display = 'inline';
+
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/facebookcafnexora1@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    const json = await res.json();
+    if (json.success === 'true' || json.success === true) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      throw new Error('send failed');
+    }
+  } catch {
+    btn.disabled = false;
+    btnText.style.display = 'inline';
+    btnSpinner.style.display = 'none';
+    const old = form.querySelector('.err-msg');
+    if (old) old.remove();
+    const d = document.createElement('div');
+    d.className = 'err-msg';
+    d.style.cssText = 'margin-top:12px;padding:12px 16px;border-radius:10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;font-size:14px;text-align:center';
+    d.textContent = '⚠️ Errore nell\'invio. Scrivici direttamente a facebookcafnexora1@gmail.com';
+    form.appendChild(d);
+  }
 }
 </script>
 </body>
