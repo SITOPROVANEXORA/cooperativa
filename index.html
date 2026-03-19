@@ -99,6 +99,17 @@ header.light {
   letter-spacing: 0.5px;
   line-height: 1.2;
 }
+
+   .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 40px; /* regola dimensione logo */
+  width: auto;
+}
 .logo-text span { display: block; font-size: 10px; font-weight: 400; color: rgba(201,168,76,0.6); letter-spacing: 2px; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
 nav { display: flex; align-items: center; gap: 6px; }
 nav a {
@@ -655,10 +666,13 @@ footer {
 
 <!-- HEADER -->
 <header id="mainHeader">
+  <div class="logo">
+  <img src="logo.png" alt="Logo Nova Pontis">
   <div class="logo-text">
     Nova PONTIS ETS
     <span>Cooperativa Sociale</span>
   </div>
+</div>
   <nav>
     <a href="#chi-siamo">Chi siamo</a>
     <a href="#impatto">Impatto</a>
