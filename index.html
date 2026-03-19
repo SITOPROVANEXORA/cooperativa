@@ -92,6 +92,34 @@ header.light {
   background: rgba(253,248,239,0.96);
   border-bottom-color: rgba(201,168,76,0.25);
 }
+
+/* ── LOGO — immagine + testo affiancati ── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+/* Il logo immagine è visibile sempre nell'header */
+.logo-img {
+  height: 44px;
+  width: auto;
+  /* leggero ring dorato che lo stacca dal background scuro */
+  filter: drop-shadow(0 2px 8px rgba(201,168,76,0.35));
+  transition: filter 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+.logo:hover .logo-img {
+  filter: drop-shadow(0 4px 14px rgba(201,168,76,0.6));
+  transform: scale(1.04);
+}
+
+/* Quando l'header diventa chiaro il drop-shadow si attenua */
+header.light .logo-img {
+  filter: drop-shadow(0 2px 6px rgba(13,27,42,0.18));
+}
+
 .logo-text {
   font-family: 'Playfair Display', serif;
   font-weight: 700; font-size: 17px;
@@ -99,18 +127,17 @@ header.light {
   letter-spacing: 0.5px;
   line-height: 1.2;
 }
-
-   .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.logo-text span {
+  display: block;
+  font-size: 10px; font-weight: 400;
+  color: rgba(201,168,76,0.6);
+  letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
 }
+/* Quando header è chiaro il testo diventa scuro */
+header.light .logo-text { color: var(--ink2); }
+header.light .logo-text span { color: var(--muted); }
 
-.logo img {
-  height: 40px; /* regola dimensione logo */
-  width: auto;
-}
-.logo-text span { display: block; font-size: 10px; font-weight: 400; color: rgba(201,168,76,0.6); letter-spacing: 2px; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
 nav { display: flex; align-items: center; gap: 6px; }
 nav a {
   color: rgba(255,255,255,0.75);
@@ -147,7 +174,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(13,27,42,0.95) 0%, rgba(30,58,95,0.85) 60%, rgba(74,124,111,0.3) 100%);
 }
-/* decorative arcs */
 .hero-arc {
   position: absolute; right: -5%; top: 50%;
   transform: translateY(-50%);
@@ -171,11 +197,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   display: grid; grid-template-columns: 1fr 1fr;
   align-items: center; gap: 80px;
   padding: 100px 0 80px;
-}
-   .hero-logo {
-  height: 80px;
-  margin-bottom: 35px;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
 }
 .hero-left { }
 .hero-eyebrow {
@@ -396,7 +417,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 }
 .stat-l { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.4; }
 
-/* chart area */
 .chart-wrap {
   margin-top: 60px;
   background: rgba(255,255,255,0.04);
@@ -540,7 +560,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 .info-value a { color: var(--gold2); text-decoration: none; }
 .info-value a:hover { text-decoration: underline; }
 
-/* form */
 .contact-form { display: flex; flex-direction: column; gap: 14px; }
 .f-label { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; display: block; }
 .f-input, .f-textarea {
@@ -649,6 +668,8 @@ footer {
   .section { padding: 80px 5%; }
   header { padding: 0 5%; }
   nav { display: none; }
+  /* Su mobile il logo testo può nascondersi se lo spazio è scarso */
+  .logo-text span { display: none; }
 }
 @media(max-width:600px){
   .hero h1 { font-size: 34px; }
@@ -656,6 +677,7 @@ footer {
   .progetti-grid { grid-template-columns: 1fr; }
   .f-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
+  .logo-text { display: none; } /* solo logo immagine su schermi piccolissimi */
 }
 
 </style>
@@ -671,13 +693,15 @@ footer {
 
 <!-- HEADER -->
 <header id="mainHeader">
-  <div class="logo">
-  <img src="logo.png" alt="Logo Nova Pontis">
-  <div class="logo-text">
-    Nova PONTIS ETS
-    <span>Cooperativa Sociale</span>
-  </div>
-</div>
+  <!-- ✅ Logo immagine + testo nell'header fisso: sempre visibile durante lo scroll -->
+  <a class="logo" href="#">
+    <img class="logo-img" src="logo.png" alt="Logo Nova Pontis">
+    <div class="logo-text">
+      Nova PONTIS ETS
+      <span>Cooperativa Sociale</span>
+    </div>
+  </a>
+
   <nav>
     <a href="#chi-siamo">Chi siamo</a>
     <a href="#impatto">Impatto</a>
@@ -696,8 +720,8 @@ footer {
 
   <div class="hero-content">
     <div class="hero-left">
+      <!-- ✅ Rimosso: hero-logo era qui nel mezzo del testo e spezzava il layout -->
       <div class="hero-eyebrow">Cooperativa Sociale · Roma</div>
-       <img src="logo.png" alt="Logo Nova Pontis" class="hero-logo">
       <h1>Costruire <em>ponti</em><br>tra persone,<br>lavoro e comunità</h1>
       <p class="hero-desc">Nova PONTIS ETS promuove l'inclusione sociale e lavorativa attraverso percorsi formativi, laboratori territoriali e reti di collaborazione.</p>
       <div class="hero-btns">
@@ -810,7 +834,6 @@ footer {
       </div>
     </div>
 
-    <!-- CHART -->
     <div class="chart-wrap reveal d2">
       <div class="chart-header">
         <div class="chart-title">Crescita mensile dei partecipanti</div>
@@ -930,14 +953,14 @@ footer {
           <div class="info-icon">✉️</div>
           <div>
             <div class="info-label">Email</div>
-            <div class="info-value"><a href="/cdn-cgi/l/email-protection#84eaebf2e5f4ebeaf0edf7aaf7ebe7aae7ebebf4e1f6e5f0edf2e5c4e3e9e5ede8aae7ebe9"><span class="__cf_email__" data-cfemail="e688899087968988928f95c8958985c885898996839487928f9087a6818b878f8ac885898b">[email&#160;protected]</span></a></div>
+            <div class="info-value"><a href="mailto:facebookcafnexora1@gmail.com">facebookcafnexora1@gmail.com</a></div>
           </div>
         </div>
         <div class="info-block">
           <div class="info-icon">📬</div>
           <div>
             <div class="info-label">PEC</div>
-            <div class="info-value"><a href="/cdn-cgi/l/email-protection#9ef0f1e8ffeef1f0eaf7edb0edf1fdb0fdf1f1eedeeefbfdb0f7ea"><span class="__cf_email__" data-cfemail="5b35342d3a2b34352f322875283438753834342b1b2b3e3875322f">[email&#160;protected]</span></a></div>
+            <div class="info-value"><a href="mailto:novpontis@pec.it">novpontis@pec.it</a></div>
           </div>
         </div>
         <div class="info-block">
@@ -957,8 +980,6 @@ footer {
       </div>
 
       <div class="reveal-r">
-        <!-- ✅ FormSubmit.co — invia direttamente a facebookcafnexora1@gmail.com -->
-        <!-- Prima volta: arriverà un'email di attivazione da FormSubmit, clicca conferma -->
         <form
           class="contact-form"
           action="https://formsubmit.co/facebookcafnexora1@gmail.com"
@@ -966,11 +987,9 @@ footer {
           id="contactForm"
           onsubmit="handleSubmit(event)"
         >
-          <!-- FormSubmit options -->
           <input type="hidden" name="_subject" value="📩 Nuovo messaggio dal sito Nova PONTIS">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
-          <!-- Nessun redirect — gestiamo noi il messaggio di conferma -->
           <input type="hidden" name="_next" value="about:blank">
 
           <div class="f-row">
@@ -1002,7 +1021,7 @@ footer {
         </form>
         <div class="form-success" id="formSuccess">
           ✅ Messaggio inviato con successo!<br>
-          <span style="font-size:13px;opacity:0.8">Ti risponderemo entro 48 ore lavorative a facebookcafnexora1@gmail.com</span>
+          <span style="font-size:13px;opacity:0.8">Ti risponderemo entro 48 ore lavorative.</span>
         </div>
       </div>
     </div>
@@ -1026,8 +1045,8 @@ footer {
     </div>
     <div class="footer-col">
       <h5>Contatti</h5>
-      <a href="/cdn-cgi/l/email-protection#5c32332a3d2c333228352f722f333f723f33332c392e3d28352a3d1c3b313d3530723f3331">Email ordinaria</a>
-      <a href="/cdn-cgi/l/email-protection#2e4041584f5e41405a475d005d414d004d41415e6e5e4b4d00475a">PEC certificata</a>
+      <a href="mailto:facebookcafnexora1@gmail.com">Email ordinaria</a>
+      <a href="mailto:novpontis@pec.it">PEC certificata</a>
       <p style="margin-top:8px">Via Gaio Melisso 57<br>00175 Roma</p>
     </div>
     <div class="footer-col">
@@ -1042,10 +1061,7 @@ footer {
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════
-   SCRIPTS
-═══════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ── LOADER
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('hide'), 900);
@@ -1076,7 +1092,6 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      // trigger counters
       entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
       revealObserver.unobserve(entry.target);
     }
@@ -1084,7 +1099,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// also watch stat numbers directly
 document.querySelectorAll('[data-target]').forEach(el => {
   const obs = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) { animateCounter(el); obs.disconnect(); }
@@ -1119,9 +1133,7 @@ const impactChart = new Chart(ctx, {
   },
   options: {
     responsive: true,
-    plugins: {
-      legend: { display: false },
-    },
+    plugins: { legend: { display: false } },
     scales: {
       x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.4)' } },
       y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.4)' } }
@@ -1129,7 +1141,6 @@ const impactChart = new Chart(ctx, {
   }
 });
 
-// month buttons
 const btnWrap = document.getElementById('monthBtns');
 months.forEach((m, i) => {
   const b = document.createElement('button');
@@ -1144,7 +1155,7 @@ months.forEach((m, i) => {
   btnWrap.appendChild(b);
 });
 
-// ── CONTACT FORM — FormSubmit AJAX
+// ── CONTACT FORM
 async function handleSubmit(e) {
   e.preventDefault();
   const form = document.getElementById('contactForm');
