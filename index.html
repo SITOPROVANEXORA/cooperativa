@@ -50,7 +50,6 @@ body {
 }
 #loader.hide { opacity: 0; visibility: hidden; }
 
-/* radial glow pulse behind logo */
 .loader-glow {
   position: absolute;
   width: 480px; height: 480px;
@@ -63,7 +62,6 @@ body {
   50%      { transform: scale(1.15); opacity: 1; }
 }
 
-/* decorative ring that slowly spins */
 .loader-ring {
   position: absolute;
   width: 320px; height: 320px;
@@ -82,7 +80,6 @@ body {
 }
 @keyframes spinRing { to { transform: rotate(360deg); } }
 
-/* logo image — large and centered */
 .loader-img {
   position: relative; z-index: 2;
   width: 220px; height: auto;
@@ -94,7 +91,6 @@ body {
   50%     { transform: translateY(-8px); }
 }
 
-/* text below logo */
 .loader-name {
   position: relative; z-index: 2;
   font-family: 'Playfair Display', serif;
@@ -112,7 +108,6 @@ body {
   animation: fadeUp 0.9s ease both 0.9s;
 }
 
-/* progress bar */
 .loader-bar-wrap {
   position: relative; z-index: 2;
   width: 140px; height: 1px;
@@ -153,7 +148,6 @@ header.light {
   border-bottom-color: rgba(201,168,76,0.25);
 }
 
-/* ── LOGO — immagine + testo affiancati ── */
 .logo {
   display: flex;
   align-items: center;
@@ -161,11 +155,9 @@ header.light {
   text-decoration: none;
 }
 
-/* Il logo immagine è visibile sempre nell'header */
 .logo-img {
   height: 44px;
   width: auto;
-  /* leggero ring dorato che lo stacca dal background scuro */
   filter: drop-shadow(0 2px 8px rgba(201,168,76,0.35));
   transition: filter 0.3s, transform 0.3s;
   flex-shrink: 0;
@@ -175,7 +167,6 @@ header.light {
   transform: scale(1.04);
 }
 
-/* Quando l'header diventa chiaro il drop-shadow si attenua */
 header.light .logo-img {
   filter: drop-shadow(0 2px 6px rgba(13,27,42,0.18));
 }
@@ -194,7 +185,6 @@ header.light .logo-img {
   letter-spacing: 2px; text-transform: uppercase;
   font-family: 'Outfit', sans-serif;
 }
-/* Quando header è chiaro il testo diventa scuro */
 header.light .logo-text { color: var(--ink2); }
 header.light .logo-text span { color: var(--muted); }
 
@@ -216,7 +206,7 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 .nav-cta:hover { background: var(--gold) !important; color: var(--ink) !important; }
 
 /* ═══════════════════════════════════════
-   HERO — locandina principale
+   HERO
 ═══════════════════════════════════════ */
 .hero {
   min-height: 100vh;
@@ -258,7 +248,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   align-items: center; gap: 80px;
   padding: 100px 0 80px;
 }
-.hero-left { }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
   background: rgba(201,168,76,0.12);
@@ -322,7 +311,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 }
 .btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); }
 
-/* Hero right — info card */
 .hero-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(201,168,76,0.2);
@@ -368,7 +356,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 .hbi-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.4; }
 .hbi-text strong { color: #fff; display: block; font-weight: 600; }
 
-/* scroll cue */
 .scroll-cue {
   position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
   z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -432,7 +419,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 }
 .chi-img-badge span { font-size: 36px; font-weight: 900; display: block; line-height: 1; }
 .chi-img-badge p { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
-.chi-text { }
 .chi-pillar {
   display: flex; align-items: flex-start; gap: 16px;
   margin-bottom: 28px; padding: 22px;
@@ -451,7 +437,7 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 .chi-pillar p { font-size: 14px; color: var(--muted); line-height: 1.5; }
 
 /* ═══════════════════════════════════════
-   IMPATTO — NUMERI
+   IMPATTO
 ═══════════════════════════════════════ */
 .impatto-bg { background: var(--ink); }
 .impatto-bg .s-title { color: #fff; }
@@ -728,7 +714,6 @@ footer {
   .section { padding: 80px 5%; }
   header { padding: 0 5%; }
   nav { display: none; }
-  /* Su mobile il logo testo può nascondersi se lo spazio è scarso */
   .logo-text span { display: none; }
 }
 @media(max-width:600px){
@@ -737,7 +722,7 @@ footer {
   .progetti-grid { grid-template-columns: 1fr; }
   .f-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
-  .logo-text { display: none; } /* solo logo immagine su schermi piccolissimi */
+  .logo-text { display: none; }
 }
 
 </style>
@@ -757,7 +742,6 @@ footer {
 
 <!-- HEADER -->
 <header id="mainHeader">
-  <!-- ✅ Logo immagine + testo nell'header fisso: sempre visibile durante lo scroll -->
   <a class="logo" href="#">
     <img class="logo-img" src="logo.png" alt="Logo Nova Pontis">
     <div class="logo-text">
@@ -784,7 +768,6 @@ footer {
 
   <div class="hero-content">
     <div class="hero-left">
-      <!-- ✅ Rimosso: hero-logo era qui nel mezzo del testo e spezzava il layout -->
       <div class="hero-eyebrow">Cooperativa Sociale · Roma</div>
       <h1>Costruire <em>ponti</em><br>tra persone,<br>lavoro e comunità</h1>
       <p class="hero-desc">Nova PONTIS ETS promuove l'inclusione sociale e lavorativa attraverso percorsi formativi, laboratori territoriali e reti di collaborazione.</p>
@@ -1017,7 +1000,7 @@ footer {
           <div class="info-icon">✉️</div>
           <div>
             <div class="info-label">Email</div>
-            <div class="info-value"><a href="mailto:facebookcafnexora1@gmail.com">facebookcafnexora1@gmail.com</a></div>
+            <div class="info-value"><a href="mailto:cooperativa@novapontis.it">cooperativa@novapontis.it</a></div>
           </div>
         </div>
         <div class="info-block">
@@ -1046,7 +1029,7 @@ footer {
       <div class="reveal-r">
         <form
           class="contact-form"
-          action="https://formsubmit.co/facebookcafnexora1@gmail.com"
+          action="https://formsubmit.co/cooperativa@novapontis.it"
           method="POST"
           id="contactForm"
           onsubmit="handleSubmit(event)"
@@ -1109,7 +1092,7 @@ footer {
     </div>
     <div class="footer-col">
       <h5>Contatti</h5>
-      <a href="mailto:facebookcafnexora1@gmail.com">Email ordinaria</a>
+      <a href="mailto:cooperativa@novapontis.it">Email ordinaria</a>
       <a href="mailto:novpontis@pec.it">PEC certificata</a>
       <p style="margin-top:8px">Via Gaio Melisso 57<br>00175 Roma</p>
     </div>
@@ -1232,7 +1215,7 @@ async function handleSubmit(e) {
   btnSpinner.style.display = 'inline';
 
   try {
-    const res = await fetch('https://formsubmit.co/ajax/facebookcafnexora1@gmail.com', {
+    const res = await fetch('https://formsubmit.co/ajax/cooperativa@novapontis.it', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(form)
@@ -1253,7 +1236,7 @@ async function handleSubmit(e) {
     const d = document.createElement('div');
     d.className = 'err-msg';
     d.style.cssText = 'margin-top:12px;padding:12px 16px;border-radius:10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;font-size:14px;text-align:center';
-    d.textContent = '⚠️ Errore nell\'invio. Scrivici direttamente a facebookcafnexora1@gmail.com';
+    d.textContent = '⚠️ Errore nell\'invio. Scrivici direttamente a cooperativa@novapontis.it';
     form.appendChild(d);
   }
 }
