@@ -683,6 +683,13 @@ footer {
   letter-spacing: 1px;
 }
 
+/* Sede secondaria divider */
+.sede-divider {
+  width: 100%; height: 1px;
+  background: rgba(201,168,76,0.12);
+  margin: 4px 0;
+}
+
 /* ═══════════════════════════════════════
    ANIMATIONS
 ═══════════════════════════════════════ */
@@ -989,13 +996,25 @@ footer {
 
     <div class="contatti-grid">
       <div class="info-blocks reveal-l">
+
+        <!-- SEDE PRINCIPALE -->
         <div class="info-block">
           <div class="info-icon">📍</div>
           <div>
-            <div class="info-label">Sede</div>
+            <div class="info-label">Sede principale</div>
             <div class="info-value">Via Gaio Melisso 57<br>00175 Roma (RM)</div>
           </div>
         </div>
+
+        <!-- SEDE SECONDARIA -->
+        <div class="info-block" style="background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.18)">
+          <div class="info-icon" style="background:rgba(201,168,76,0.12)">📍</div>
+          <div>
+            <div class="info-label">Sede secondaria</div>
+            <div class="info-value">Via dei Marrucini 51<br>65127 Pescara (PE)</div>
+          </div>
+        </div>
+
         <div class="info-block">
           <div class="info-icon">✉️</div>
           <div>
@@ -1094,7 +1113,14 @@ footer {
       <h5>Contatti</h5>
       <a href="mailto:cooperativa@novapontis.it">Email ordinaria</a>
       <a href="mailto:novpontis@pec.it">PEC certificata</a>
-      <p style="margin-top:8px">Via Gaio Melisso 57<br>00175 Roma</p>
+      <p style="margin-top:8px">
+        <strong style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.5px">SEDE PRINCIPALE</strong><br>
+        Via Gaio Melisso 57<br>00175 Roma
+      </p>
+      <p style="margin-top:10px">
+        <strong style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.5px">SEDE SECONDARIA</strong><br>
+        Via dei Marrucini 51<br>65127 Pescara (PE)
+      </p>
     </div>
     <div class="footer-col">
       <h5>Dati societari</h5>
