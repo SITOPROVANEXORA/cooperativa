@@ -370,6 +370,192 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
 
 /* ═══════════════════════════════════════
+   5X1000 BANNER — SEZIONE EVIDENZA
+═══════════════════════════════════════ */
+.cinque-section {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1a3350 50%, #0d2416 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 6%;
+}
+.cinque-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(201,168,76,0.06)" stroke-width="1"/><circle cx="100" cy="100" r="60" fill="none" stroke="rgba(201,168,76,0.04)" stroke-width="1"/></svg>') right -80px center / 500px no-repeat;
+  pointer-events: none;
+}
+.cinque-inner {
+  max-width: 1200px; margin: auto;
+  position: relative; z-index: 1;
+}
+
+/* Ribbon badge */
+.cinque-ribbon {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(201,168,76,0.18);
+  border: 1px solid rgba(201,168,76,0.45);
+  color: var(--gold2);
+  padding: 8px 22px; border-radius: 50px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.cinque-ribbon::before {
+  content: '';
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s infinite;
+}
+
+.cinque-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 50px; font-weight: 900;
+  color: #fff; line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+}
+.cinque-title em { font-style: italic; color: var(--gold); }
+.cinque-subtitle {
+  font-size: 20px; font-weight: 400;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 36px;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+.cinque-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px; align-items: start;
+}
+
+/* Left column — description */
+.cinque-desc p {
+  font-size: 16px; line-height: 1.8;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+}
+.cinque-desc p strong {
+  color: rgba(255,255,255,0.95);
+  font-weight: 600;
+}
+
+/* CF highlight box */
+.cinque-cf-box {
+  background: rgba(201,168,76,0.1);
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  padding: 32px 36px;
+  text-align: center;
+  margin-top: 32px;
+}
+.cinque-cf-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.cinque-cf-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px; font-weight: 900;
+  color: #fff;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+.cinque-cf-sub {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+
+/* Right column — how-to + IBAN */
+.cinque-right { display: flex; flex-direction: column; gap: 20px; }
+
+.cinque-step {
+  display: flex; align-items: flex-start; gap: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 16px;
+  padding: 22px 24px;
+  transition: 0.3s;
+}
+.cinque-step:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.25); }
+.cinque-step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--ink);
+  font-weight: 800; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cinque-step-text h4 {
+  font-size: 15px; font-weight: 700;
+  color: #fff; margin-bottom: 4px;
+}
+.cinque-step-text p {
+  font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5;
+}
+
+/* IBAN donate box */
+.cinque-iban-box {
+  background: rgba(74,124,111,0.15);
+  border: 1px solid rgba(106,171,155,0.35);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+.cinque-iban-title {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sage2);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.cinque-iban-title::before {
+  content: '';
+  width: 18px; height: 1px;
+  background: var(--sage2);
+  display: inline-block;
+}
+.cinque-iban-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 700;
+  color: #fff; letter-spacing: 2px;
+  word-break: break-all;
+  margin-bottom: 8px;
+}
+.cinque-iban-sub {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+}
+
+/* Bottom motto */
+.cinque-motto {
+  margin-top: 52px; padding-top: 36px;
+  border-top: 1px solid rgba(201,168,76,0.15);
+  text-align: center;
+}
+.cinque-motto p {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+/* Copy button */
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1.5px solid rgba(201,168,76,0.45);
+  border-radius: 50px;
+  color: var(--gold);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.25s;
+  letter-spacing: 0.5px;
+}
+.copy-btn:hover { background: rgba(201,168,76,0.12); border-color: var(--gold); }
+.copy-btn.copied { color: var(--sage2); border-color: var(--sage2); background: rgba(74,124,111,0.1); }
+
+/* ═══════════════════════════════════════
    SECTION WRAPPER
 ═══════════════════════════════════════ */
 .section { padding: 110px 6%; }
@@ -722,6 +908,9 @@ footer {
   header { padding: 0 5%; }
   nav { display: none; }
   .logo-text span { display: none; }
+  .cinque-layout { grid-template-columns: 1fr; gap: 32px; }
+  .cinque-title { font-size: 36px; }
+  .cinque-cf-number { font-size: 28px; letter-spacing: 2px; }
 }
 @media(max-width:600px){
   .hero h1 { font-size: 34px; }
@@ -730,6 +919,9 @@ footer {
   .f-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
   .logo-text { display: none; }
+  .cinque-title { font-size: 28px; }
+  .cinque-subtitle { font-size: 16px; }
+  .cinque-cf-number { font-size: 22px; letter-spacing: 1px; }
 }
 
 </style>
@@ -762,6 +954,7 @@ footer {
     <a href="#impatto">Impatto</a>
     <a href="#progetti">Progetti</a>
     <a href="#testimonianze">Testimonianze</a>
+    <a href="#5x1000" style="color:var(--gold) !important;">5×1000</a>
     <a href="#contatti" class="nav-cta">Contattaci</a>
   </nav>
 </header>
@@ -814,6 +1007,91 @@ footer {
   </div>
 
   <div class="scroll-cue">Scorri</div>
+</section>
+
+<!-- ═══════ 5×1000 — SEZIONE EVIDENZA ═══════ -->
+<section class="cinque-section" id="5x1000">
+  <div class="cinque-inner">
+
+    <div class="cinque-ribbon reveal">5×1000 · Sostienici</div>
+
+    <h2 class="cinque-title reveal d1">
+      Dona il tuo <em>5×1000</em>.<br>Cambia una vita.
+    </h2>
+    <p class="cinque-subtitle reveal d2">
+      Con una semplice firma puoi trasformare il futuro di una persona.
+    </p>
+
+    <div class="cinque-layout">
+
+      <!-- LEFT: descrizione + CF -->
+      <div class="cinque-desc reveal-l">
+        <p>
+          Nova PONTIS lavora ogni giorno per offrire <strong>opportunità concrete di lavoro e reinserimento sociale</strong>, soprattutto a persone provenienti dal carcere o da situazioni di fragilità.
+        </p>
+        <p>
+          Non si tratta di assistenza, ma di <strong>dignità, responsabilità e nuove possibilità</strong>. Ogni contributo diventa formazione, lavoro vero e una seconda occasione per ripartire.
+        </p>
+        <p>
+          Destina il tuo 5×1000 nella tua dichiarazione dei redditi: <strong>non ti costa nulla</strong>, ma per noi fa la differenza.
+        </p>
+
+        <div class="cinque-cf-box">
+          <div class="cinque-cf-label">Codice Fiscale da inserire</div>
+          <div class="cinque-cf-number" id="cfNumber">18226531004</div>
+          <div class="cinque-cf-sub">Sezione "Sostegno del volontariato,<br>delle ONG e delle associazioni di promozione sociale"</div>
+          <button class="copy-btn" id="copyCF" onclick="copyCF()">
+            📋 Copia codice fiscale
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: steps + IBAN -->
+      <div class="cinque-right reveal-r">
+
+        <div class="cinque-step">
+          <div class="cinque-step-num">1</div>
+          <div class="cinque-step-text">
+            <h4>Compila la dichiarazione dei redditi</h4>
+            <p>CU, 730, o modello Redditi PF — tutti i contribuenti possono farlo, anche in esenzione.</p>
+          </div>
+        </div>
+
+        <div class="cinque-step">
+          <div class="cinque-step-num">2</div>
+          <div class="cinque-step-text">
+            <h4>Firma nel riquadro del volontariato</h4>
+            <p>Cerca la sezione dedicata al sostegno delle organizzazioni non profit e del terzo settore.</p>
+          </div>
+        </div>
+
+        <div class="cinque-step">
+          <div class="cinque-step-num">3</div>
+          <div class="cinque-step-text">
+            <h4>Scrivi il nostro codice fiscale</h4>
+            <p>Inserisci <strong style="color:#e8c96a">18226531004</strong> nel campo apposito. È tutto quello che serve.</p>
+          </div>
+        </div>
+
+        <!-- IBAN donazione diretta -->
+        <div class="cinque-iban-box">
+          <div class="cinque-iban-title">Vuoi fare di più? Dona direttamente</div>
+          <div class="cinque-iban-number" id="ibanNumber">IT11 T062 3003 2161 0000 9379 6184</div>
+          <div class="cinque-iban-sub">Bonifico bancario intestato a<br>Coop. Sociale Nova PONTIS ETS</div>
+          <button class="copy-btn" id="copyIBAN" onclick="copyIBAN()" style="margin-top:14px; border-color:rgba(106,171,155,0.45); color:var(--sage2);">
+            📋 Copia IBAN
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Motto finale -->
+    <div class="cinque-motto reveal d3">
+      <p>Non è beneficenza. È lavoro, dignità e futuro.</p>
+    </div>
+
+  </div>
 </section>
 
 <!-- ═══════ CHI SIAMO ═══════ -->
@@ -1107,6 +1385,7 @@ footer {
       <a href="#impatto">Il nostro impatto</a>
       <a href="#progetti">Progetti</a>
       <a href="#testimonianze">Testimonianze</a>
+      <a href="#5x1000" style="color:var(--gold)">5×1000</a>
       <a href="#contatti">Contatti</a>
     </div>
     <div class="footer-col">
@@ -1126,6 +1405,10 @@ footer {
       <h5>Dati societari</h5>
       <p>P. IVA 18226531004</p>
       <p style="margin-top:8px">Iscritta al Registro<br>del Terzo Settore</p>
+      <p style="margin-top:12px; padding:10px 14px; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); border-radius:10px;">
+        <strong style="color:var(--gold); font-size:11px; letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:4px;">5×1000</strong>
+        CF: <strong style="color:rgba(255,255,255,0.8)">18226531004</strong>
+      </p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1227,6 +1510,31 @@ months.forEach((m, i) => {
   };
   btnWrap.appendChild(b);
 });
+
+// ── COPY FUNCTIONS
+function copyCF() {
+  navigator.clipboard.writeText('18226531004').then(() => {
+    const btn = document.getElementById('copyCF');
+    btn.textContent = '✅ Codice copiato!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copia codice fiscale';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+function copyIBAN() {
+  navigator.clipboard.writeText('IT11T0623003216100009379 6184').then(() => {
+    const btn = document.getElementById('copyIBAN');
+    btn.textContent = '✅ IBAN copiato!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copia IBAN';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
 
 // ── CONTACT FORM
 async function handleSubmit(e) {
