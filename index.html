@@ -6,6 +6,7 @@
 <title>Coop. Sociale Nova PONTIS ETS</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 
 /* ═══════════════════════════════════════
@@ -370,7 +371,7 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
 
 /* ═══════════════════════════════════════
-   5X1000 BANNER — SEZIONE EVIDENZA
+   5X1000 BANNER
 ═══════════════════════════════════════ */
 .cinque-section {
   background: linear-gradient(135deg, #0d1b2a 0%, #1a3350 50%, #0d2416 100%);
@@ -388,8 +389,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   max-width: 1200px; margin: auto;
   position: relative; z-index: 1;
 }
-
-/* Ribbon badge */
 .cinque-ribbon {
   display: inline-flex; align-items: center; gap: 10px;
   background: rgba(201,168,76,0.18);
@@ -406,7 +405,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   background: var(--gold);
   animation: blink 2s infinite;
 }
-
 .cinque-title {
   font-family: 'Playfair Display', serif;
   font-size: 50px; font-weight: 900;
@@ -422,24 +420,16 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   max-width: 640px;
   line-height: 1.6;
 }
-
 .cinque-layout {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 40px; align-items: start;
 }
-
-/* Left column — description */
 .cinque-desc p {
   font-size: 16px; line-height: 1.8;
   color: rgba(255,255,255,0.7);
   margin-bottom: 20px;
 }
-.cinque-desc p strong {
-  color: rgba(255,255,255,0.95);
-  font-weight: 600;
-}
-
-/* CF highlight box */
+.cinque-desc p strong { color: rgba(255,255,255,0.95); font-weight: 600; }
 .cinque-cf-box {
   background: rgba(201,168,76,0.1);
   border: 2px solid var(--gold);
@@ -461,14 +451,8 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   letter-spacing: 4px;
   margin-bottom: 10px;
 }
-.cinque-cf-sub {
-  font-size: 13px; color: rgba(255,255,255,0.45);
-  line-height: 1.5;
-}
-
-/* Right column — how-to + IBAN */
+.cinque-cf-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; }
 .cinque-right { display: flex; flex-direction: column; gap: 20px; }
-
 .cinque-step {
   display: flex; align-items: flex-start; gap: 16px;
   background: rgba(255,255,255,0.04);
@@ -486,15 +470,8 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.cinque-step-text h4 {
-  font-size: 15px; font-weight: 700;
-  color: #fff; margin-bottom: 4px;
-}
-.cinque-step-text p {
-  font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5;
-}
-
-/* IBAN donate box */
+.cinque-step-text h4 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.cinque-step-text p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
 .cinque-iban-box {
   background: rgba(74,124,111,0.15);
   border: 1px solid rgba(106,171,155,0.35);
@@ -521,11 +498,7 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   word-break: break-all;
   margin-bottom: 8px;
 }
-.cinque-iban-sub {
-  font-size: 13px; color: rgba(255,255,255,0.45);
-}
-
-/* Bottom motto */
+.cinque-iban-sub { font-size: 13px; color: rgba(255,255,255,0.45); }
 .cinque-motto {
   margin-top: 52px; padding-top: 36px;
   border-top: 1px solid rgba(201,168,76,0.15);
@@ -537,8 +510,6 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   color: var(--gold);
   letter-spacing: 0.5px;
 }
-
-/* Copy button */
 .copy-btn {
   display: inline-flex; align-items: center; gap: 8px;
   margin-top: 16px;
@@ -581,9 +552,137 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 .s-sub { font-size: 17px; color: var(--muted); line-height: 1.7; max-width: 560px; }
 
 /* ═══════════════════════════════════════
+   SERVIZI
+═══════════════════════════════════════ */
+.servizi-bg { background: var(--white); }
+
+.servizi-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin: 40px 0 0;
+}
+.s-tab {
+  padding: 10px 24px; border-radius: 50px;
+  border: 1.5px solid rgba(201,168,76,0.25);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.25s;
+  letter-spacing: 0.3px;
+}
+.s-tab:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.07); }
+.s-tab.active { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--ink); border-color: transparent; box-shadow: 0 4px 14px rgba(201,168,76,0.3); }
+
+.s-panel { display: none; animation: fadePanel 0.4s ease; }
+.s-panel.active { display: block; }
+@keyframes fadePanel { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+.serv-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px; margin-top: 32px;
+}
+.serv-card {
+  background: var(--cream);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 20px; padding: 28px 24px;
+  transition: all 0.35s;
+  box-shadow: 0 4px 16px rgba(13,27,42,0.04);
+}
+.serv-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(13,27,42,0.1); border-color: rgba(201,168,76,0.3); }
+.serv-card-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 16px;
+}
+.serv-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; color: var(--ink); margin-bottom: 12px;
+}
+.serv-card ul { list-style: none; padding: 0; }
+.serv-card ul li {
+  font-size: 13px; color: var(--muted);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(13,27,42,0.05);
+  display: flex; align-items: flex-start; gap: 8px;
+  line-height: 1.4;
+}
+.serv-card ul li:last-child { border-bottom: none; }
+.serv-card ul li::before {
+  content: '–';
+  color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+.why-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-top: 32px;
+}
+.why-item {
+  background: var(--ink);
+  border-radius: 18px; padding: 24px 20px;
+  text-align: center; transition: 0.3s;
+}
+.why-item:hover { transform: translateY(-4px); background: var(--ink2); }
+.why-item-icon { font-size: 28px; margin-bottom: 10px; }
+.why-item p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+.why-item strong { color: #fff; display: block; margin-bottom: 4px; font-size: 14px; }
+
+/* PDF viewer */
+.pdf-viewer-wrap {
+  margin-top: 32px;
+  background: var(--white);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 8px 30px rgba(13,27,42,0.08);
+}
+.pdf-toolbar {
+  background: var(--ink);
+  padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.pdf-toolbar-title { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 500; }
+.pdf-nav { display: flex; align-items: center; gap: 10px; }
+.pdf-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(201,168,76,0.25);
+  color: var(--gold); cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+  transition: 0.2s;
+}
+.pdf-btn:hover { background: rgba(201,168,76,0.15); }
+.pdf-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.pdf-page-info { font-size: 13px; color: rgba(255,255,255,0.55); min-width: 60px; text-align: center; }
+.pdf-canvas-wrap {
+  background: #e8e8e8;
+  min-height: 300px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+#pdfCanvas {
+  display: block; max-width: 100%; height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.pdf-loading { color: var(--muted); font-size: 14px; text-align: center; padding: 40px; }
+
+.pdf-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 24px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--ink); border-radius: 50px;
+  font-weight: 700; font-size: 13px;
+  text-decoration: none; transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.3);
+}
+.pdf-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.45); }
+
+/* ═══════════════════════════════════════
    CHI SIAMO
 ═══════════════════════════════════════ */
-.chi-siamo-bg { background: var(--white); }
+.chi-siamo-bg { background: var(--cream); }
 .chi-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 80px; align-items: center;
@@ -608,7 +707,7 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 .chi-pillar {
   display: flex; align-items: flex-start; gap: 16px;
   margin-bottom: 28px; padding: 22px;
-  background: var(--cream); border-radius: 16px;
+  background: var(--white); border-radius: 16px;
   border-left: 3px solid var(--gold);
   transition: 0.3s;
 }
@@ -659,10 +758,7 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
 }
-.chart-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px; color: #fff;
-}
+.chart-title { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; }
 .month-btns { display: flex; gap: 6px; flex-wrap: wrap; }
 .month-btn {
   padding: 6px 14px; border-radius: 50px; border: 1px solid rgba(201,168,76,0.2);
@@ -706,20 +802,12 @@ nav a:hover { color: var(--gold); background: rgba(201,168,76,0.1); }
 .proj-top.amber { background: linear-gradient(135deg, #fff8e1, #ffe082); }
 .proj-top.rose  { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
 .proj-body { padding: 28px; }
-.proj-tag {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 10px;
-}
+.proj-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
 .proj-tag.green { color: #2e7d32; }
 .proj-tag.blue  { color: #1565c0; }
 .proj-tag.amber { color: #e65100; }
 .proj-tag.rose  { color: #880e4f; }
-.proj-body h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 19px; color: var(--ink);
-  margin-bottom: 10px;
-}
+.proj-body h3 { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--ink); margin-bottom: 10px; }
 .proj-body p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
 /* ═══════════════════════════════════════
@@ -841,17 +929,9 @@ footer {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 50px;
 }
-.footer-brand {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px; color: var(--gold);
-  margin-bottom: 12px;
-}
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); margin-bottom: 12px; }
 .footer-tagline { font-size: 13px; line-height: 1.7; max-width: 240px; }
-.footer-col h5 {
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.35); margin-bottom: 16px;
-}
+.footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
 .footer-col p { font-size: 13px; line-height: 1.8; }
 .footer-col a { color: rgba(255,255,255,0.5); text-decoration: none; display: block; margin-bottom: 6px; font-size: 13px; transition: 0.2s; }
 .footer-col a:hover { color: var(--gold); }
@@ -869,20 +949,10 @@ footer {
   letter-spacing: 1px;
 }
 
-/* Sede secondaria divider */
-.sede-divider {
-  width: 100%; height: 1px;
-  background: rgba(201,168,76,0.12);
-  margin: 4px 0;
-}
-
 /* ═══════════════════════════════════════
    ANIMATIONS
 ═══════════════════════════════════════ */
-.reveal {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-l { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal-l.visible { opacity: 1; transform: translateX(0); }
@@ -911,6 +981,10 @@ footer {
   .cinque-layout { grid-template-columns: 1fr; gap: 32px; }
   .cinque-title { font-size: 36px; }
   .cinque-cf-number { font-size: 28px; letter-spacing: 2px; }
+}
+@media(max-width:700px){
+  .serv-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
 }
 @media(max-width:600px){
   .hero h1 { font-size: 34px; }
@@ -948,12 +1022,11 @@ footer {
       <span>Cooperativa Sociale</span>
     </div>
   </a>
-
   <nav>
     <a href="#chi-siamo">Chi siamo</a>
+    <a href="#servizi" style="color:var(--gold2)!important;">Servizi</a>
     <a href="#impatto">Impatto</a>
     <a href="#progetti">Progetti</a>
-    <a href="#testimonianze">Testimonianze</a>
     <a href="#5x1000" style="color:var(--gold) !important;">5×1000</a>
     <a href="#contatti" class="nav-cta">Contattaci</a>
   </nav>
@@ -965,18 +1038,16 @@ footer {
   <div class="hero-overlay"></div>
   <div class="hero-arc"></div>
   <div class="hero-arc2"></div>
-
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-eyebrow">Cooperativa Sociale · Roma</div>
       <h1>Costruire <em>ponti</em><br>tra persone,<br>lavoro e comunità</h1>
       <p class="hero-desc">Nova PONTIS ETS promuove l'inclusione sociale e lavorativa attraverso percorsi formativi, laboratori territoriali e reti di collaborazione.</p>
       <div class="hero-btns">
-        <a href="#progetti" class="btn-gold">Scopri i progetti</a>
+        <a href="#servizi" class="btn-gold">Scopri i servizi</a>
         <a href="#contatti" class="btn-outline">Collabora con noi</a>
       </div>
     </div>
-
     <div class="hero-card reveal d2">
       <div class="hero-card-title">La cooperativa in sintesi</div>
       <div class="hero-stat-row">
@@ -1005,50 +1076,205 @@ footer {
       </div>
     </div>
   </div>
-
   <div class="scroll-cue">Scorri</div>
 </section>
 
-<!-- ═══════ 5×1000 — SEZIONE EVIDENZA ═══════ -->
+<!-- ═══════ SERVIZI ═══════ -->
+<section class="section servizi-bg" id="servizi">
+  <div class="inner">
+    <div class="s-tag sage reveal">Cosa offriamo</div>
+    <h2 class="s-title reveal d1">I nostri <em>servizi</em></h2>
+    <p class="s-sub reveal d2">Soluzioni su misura per hotel, strutture ricettive e condomini — personale formato, flessibilità operativa 7/7, tutto incluso.</p>
+
+    <div class="servizi-tabs reveal d3">
+      <button class="s-tab active" onclick="showPanel('hotel')">🏨 Hotel & Strutture Ricettive</button>
+      <button class="s-tab" onclick="showPanel('condomini')">🏢 Condomini</button>
+      <button class="s-tab" onclick="showPanel('perche')">✦ Perché NovaPontis</button>
+      <button class="s-tab" onclick="showPanel('pdf')">📄 Brochure PDF</button>
+    </div>
+
+    <!-- PANEL: HOTEL -->
+    <div class="s-panel active" id="panel-hotel">
+      <div class="serv-grid">
+        <div class="serv-card reveal d1">
+          <div class="serv-card-icon">🧹</div>
+          <h4>Pulizie e Housekeeping</h4>
+          <ul>
+            <li>Riassetto camere (check-in / check-out)</li>
+            <li>Pulizia giornaliera e rifacimento letti</li>
+            <li>Igienizzazione bagni e ambienti</li>
+            <li>Pulizia e cura delle aree comuni</li>
+          </ul>
+        </div>
+        <div class="serv-card reveal d2">
+          <div class="serv-card-icon">🛎️</div>
+          <h4>Servizi di Supporto</h4>
+          <ul>
+            <li>Addetti ai piani</li>
+            <li>Facchinaggio e gestione bagagli</li>
+            <li>Supporto lavanderia</li>
+            <li>Pulizie straordinarie e sanificazioni</li>
+          </ul>
+        </div>
+        <div class="serv-card reveal d3">
+          <div class="serv-card-icon">🔧</div>
+          <h4>Manutenzione & Interventi Tecnici</h4>
+          <ul>
+            <li>Piccola manutenzione ordinaria</li>
+            <li>Interventi rapidi su richiesta</li>
+            <li>Piccoli lavori edili (ripristini, tinteggiature)</li>
+          </ul>
+        </div>
+        <div class="serv-card reveal d4">
+          <div class="serv-card-icon">🌿</div>
+          <h4>Cura degli Spazi Esterni</h4>
+          <ul>
+            <li>Pulizia cortili e ingressi</li>
+            <li>Manutenzione aree verdi e giardini</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding:20px 28px;background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.25);border-radius:16px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:28px;">👆</span>
+        <p style="font-size:15px;color:var(--ink2);font-weight:600;">Flessibilità operativa anche su turni e nei periodi di alta occupazione</p>
+      </div>
+    </div>
+
+    <!-- PANEL: CONDOMINI -->
+    <div class="s-panel" id="panel-condomini">
+      <div class="serv-grid">
+        <div class="serv-card">
+          <div class="serv-card-icon">🏛️</div>
+          <h4>Pulizia e Decoro Stabile</h4>
+          <ul>
+            <li>Scale, pianerottoli e androni</li>
+            <li>Ascensori e vetrate</li>
+            <li>Sanificazione ambienti comuni</li>
+          </ul>
+        </div>
+        <div class="serv-card">
+          <div class="serv-card-icon">🗑️</div>
+          <h4>Gestione Rifiuti</h4>
+          <ul>
+            <li>Esposizione e ritiro secchi</li>
+            <li>Pulizia aree cassonetti</li>
+          </ul>
+        </div>
+        <div class="serv-card">
+          <div class="serv-card-icon">⚙️</div>
+          <h4>Manutenzione Ordinaria</h4>
+          <ul>
+            <li>Sostituzione lampadine</li>
+            <li>Piccoli interventi tecnici</li>
+            <li>Controllo periodico degli spazi</li>
+          </ul>
+        </div>
+        <div class="serv-card">
+          <div class="serv-card-icon">🌱</div>
+          <h4>Cura del Verde</h4>
+          <ul>
+            <li>Taglio erba e potatura</li>
+            <li>Manutenzione giardini e aiuole</li>
+          </ul>
+        </div>
+        <div class="serv-card">
+          <div class="serv-card-icon">🏗️</div>
+          <h4>Interventi Edilizi Leggeri</h4>
+          <ul>
+            <li>Ripristini murari</li>
+            <li>Tinteggiature interne ed esterne</li>
+            <li>Piccole ristrutturazioni e manutenzioni edili</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding:20px 28px;background:linear-gradient(135deg,rgba(74,124,111,0.1),rgba(74,124,111,0.04));border:1px solid rgba(74,124,111,0.25);border-radius:16px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:28px;">👆</span>
+        <p style="font-size:15px;color:var(--sage);font-weight:600;">Un unico interlocutore per la gestione completa dello stabile</p>
+      </div>
+    </div>
+
+    <!-- PANEL: PERCHE -->
+    <div class="s-panel" id="panel-perche">
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-item-icon">🤝</div>
+          <p><strong>Un solo partner</strong>per più servizi integrati</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-icon">👤</div>
+          <p><strong>Personale selezionato</strong>e formato da noi</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-icon">📅</div>
+          <p><strong>Copertura 7 giorni su 7</strong>anche su turni</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-icon">🛡️</div>
+          <p><strong>Nessuna gestione</strong>diretta del personale</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-icon">📋</div>
+          <p><strong>Oneri contributivi</strong>e assicurativi inclusi</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-icon">💰</div>
+          <p><strong>Ottimizzazione</strong>dei costi operativi</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-icon">🌍</div>
+          <p><strong>Impatto sociale</strong>positivo sul territorio</p>
+        </div>
+      </div>
+      <div style="margin-top:40px;text-align:center;padding:36px;background:var(--cream);border-radius:20px;border:1px solid var(--border);">
+        <p style="font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--ink2);">
+          "NovaPontis: gestiamo tutto noi,<br>tu pensa solo alla tua attività."
+        </p>
+      </div>
+    </div>
+
+    <!-- PANEL: PDF -->
+    <div class="s-panel" id="panel-pdf">
+      <div class="pdf-viewer-wrap">
+        <div class="pdf-toolbar">
+          <div class="pdf-toolbar-title">📄 Servizi per Hotel e Strutture Ricettive — NovaPontis</div>
+          <div class="pdf-nav">
+            <button class="pdf-btn" id="pdfPrev" onclick="changePdfPage(-1)" disabled>&#8249;</button>
+            <div class="pdf-page-info">Pag. <span id="pdfPageNum">–</span> / <span id="pdfPageCount">–</span></div>
+            <button class="pdf-btn" id="pdfNext" onclick="changePdfPage(1)" disabled>&#8250;</button>
+          </div>
+        </div>
+        <div class="pdf-canvas-wrap" id="pdfCanvasWrap">
+          <div class="pdf-loading" id="pdfLoading">⏳ Caricamento PDF in corso...</div>
+          <canvas id="pdfCanvas" style="display:none;"></canvas>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:24px;">
+        <a href="servizi.pdf" download="Servizi-NovaPontis.pdf" class="pdf-cta">⬇ Scarica la Brochure PDF</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ 5×1000 ═══════ -->
 <section class="cinque-section" id="5x1000">
   <div class="cinque-inner">
-
     <div class="cinque-ribbon reveal">5×1000 · Sostienici</div>
-
-    <h2 class="cinque-title reveal d1">
-      Dona il tuo <em>5×1000</em>.<br>Cambia una vita.
-    </h2>
-    <p class="cinque-subtitle reveal d2">
-      Con una semplice firma puoi trasformare il futuro di una persona.
-    </p>
-
+    <h2 class="cinque-title reveal d1">Dona il tuo <em>5×1000</em>.<br>Cambia una vita.</h2>
+    <p class="cinque-subtitle reveal d2">Con una semplice firma puoi trasformare il futuro di una persona.</p>
     <div class="cinque-layout">
-
-      <!-- LEFT: descrizione + CF -->
       <div class="cinque-desc reveal-l">
-        <p>
-          Nova PONTIS lavora ogni giorno per offrire <strong>opportunità concrete di lavoro e reinserimento sociale</strong>, soprattutto a persone provenienti dal carcere o da situazioni di fragilità.
-        </p>
-        <p>
-          Non si tratta di assistenza, ma di <strong>dignità, responsabilità e nuove possibilità</strong>. Ogni contributo diventa formazione, lavoro vero e una seconda occasione per ripartire.
-        </p>
-        <p>
-          Destina il tuo 5×1000 nella tua dichiarazione dei redditi: <strong>non ti costa nulla</strong>, ma per noi fa la differenza.
-        </p>
-
+        <p>Nova PONTIS lavora ogni giorno per offrire <strong>opportunità concrete di lavoro e reinserimento sociale</strong>, soprattutto a persone provenienti dal carcere o da situazioni di fragilità.</p>
+        <p>Non si tratta di assistenza, ma di <strong>dignità, responsabilità e nuove possibilità</strong>. Ogni contributo diventa formazione, lavoro vero e una seconda occasione per ripartire.</p>
+        <p>Destina il tuo 5×1000 nella tua dichiarazione dei redditi: <strong>non ti costa nulla</strong>, ma per noi fa la differenza.</p>
         <div class="cinque-cf-box">
           <div class="cinque-cf-label">Codice Fiscale da inserire</div>
           <div class="cinque-cf-number" id="cfNumber">18226531004</div>
           <div class="cinque-cf-sub">Sezione "Sostegno del volontariato,<br>delle ONG e delle associazioni di promozione sociale"</div>
-          <button class="copy-btn" id="copyCF" onclick="copyCF()">
-            📋 Copia codice fiscale
-          </button>
+          <button class="copy-btn" id="copyCF" onclick="copyCF()">📋 Copia codice fiscale</button>
         </div>
       </div>
-
-      <!-- RIGHT: steps + IBAN -->
       <div class="cinque-right reveal-r">
-
         <div class="cinque-step">
           <div class="cinque-step-num">1</div>
           <div class="cinque-step-text">
@@ -1056,7 +1282,6 @@ footer {
             <p>CU, 730, o modello Redditi PF — tutti i contribuenti possono farlo, anche in esenzione.</p>
           </div>
         </div>
-
         <div class="cinque-step">
           <div class="cinque-step-num">2</div>
           <div class="cinque-step-text">
@@ -1064,7 +1289,6 @@ footer {
             <p>Cerca la sezione dedicata al sostegno delle organizzazioni non profit e del terzo settore.</p>
           </div>
         </div>
-
         <div class="cinque-step">
           <div class="cinque-step-num">3</div>
           <div class="cinque-step-text">
@@ -1072,25 +1296,17 @@ footer {
             <p>Inserisci <strong style="color:#e8c96a">18226531004</strong> nel campo apposito. È tutto quello che serve.</p>
           </div>
         </div>
-
-        <!-- IBAN donazione diretta -->
         <div class="cinque-iban-box">
           <div class="cinque-iban-title">Vuoi fare di più? Dona direttamente</div>
           <div class="cinque-iban-number" id="ibanNumber">IT11 T062 3003 2161 0000 9379 6184</div>
           <div class="cinque-iban-sub">Bonifico bancario intestato a<br>Coop. Sociale Nova PONTIS ETS</div>
-          <button class="copy-btn" id="copyIBAN" onclick="copyIBAN()" style="margin-top:14px; border-color:rgba(106,171,155,0.45); color:var(--sage2);">
-            📋 Copia IBAN
-          </button>
+          <button class="copy-btn" id="copyIBAN" onclick="copyIBAN()" style="margin-top:14px;border-color:rgba(106,171,155,0.45);color:var(--sage2);">📋 Copia IBAN</button>
         </div>
-
       </div>
     </div>
-
-    <!-- Motto finale -->
     <div class="cinque-motto reveal d3">
       <p>Non è beneficenza. È lavoro, dignità e futuro.</p>
     </div>
-
   </div>
 </section>
 
@@ -1100,7 +1316,6 @@ footer {
     <div class="s-tag reveal">La nostra missione</div>
     <h2 class="s-title reveal d1">Chi <em>siamo</em></h2>
     <p class="s-sub reveal d2">Una cooperativa sociale nata per creare ponti concreti tra persone in situazione di svantaggio e il mondo del lavoro.</p>
-
     <div class="chi-grid">
       <div class="chi-img-wrap reveal-l">
         <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800" alt="Team Nova Pontis">
@@ -1109,35 +1324,22 @@ footer {
           <p>Certificata</p>
         </div>
       </div>
-
       <div class="chi-text reveal-r">
         <div class="chi-pillar">
           <div class="chi-pillar-icon">🌱</div>
-          <div>
-            <h4>Inclusione lavorativa</h4>
-            <p>Percorsi personalizzati per l'inserimento professionale di persone in condizione di svantaggio sociale.</p>
-          </div>
+          <div><h4>Inclusione lavorativa</h4><p>Percorsi personalizzati per l'inserimento professionale di persone in condizione di svantaggio sociale.</p></div>
         </div>
         <div class="chi-pillar">
           <div class="chi-pillar-icon">🏛️</div>
-          <div>
-            <h4>Collaborazione istituzionale</h4>
-            <p>Lavoriamo con enti pubblici, terzo settore e comunità locali per costruire reti di supporto durature.</p>
-          </div>
+          <div><h4>Collaborazione istituzionale</h4><p>Lavoriamo con enti pubblici, terzo settore e comunità locali per costruire reti di supporto durature.</p></div>
         </div>
         <div class="chi-pillar">
           <div class="chi-pillar-icon">✂️</div>
-          <div>
-            <h4>Laboratori artigianali</h4>
-            <p>Spazi formativi dove la creatività diventa strumento di autonomia e crescita personale.</p>
-          </div>
+          <div><h4>Laboratori artigianali</h4><p>Spazi formativi dove la creatività diventa strumento di autonomia e crescita personale.</p></div>
         </div>
         <div class="chi-pillar">
           <div class="chi-pillar-icon">📚</div>
-          <div>
-            <h4>Formazione continua</h4>
-            <p>Programmi didattici aggiornati per sviluppare competenze spendibili nel mercato del lavoro.</p>
-          </div>
+          <div><h4>Formazione continua</h4><p>Programmi didattici aggiornati per sviluppare competenze spendibili nel mercato del lavoro.</p></div>
         </div>
       </div>
     </div>
@@ -1150,22 +1352,11 @@ footer {
     <div class="s-tag reveal" style="background:rgba(201,168,76,0.1);color:var(--gold)">Il nostro impatto</div>
     <h2 class="s-title reveal d1">Numeri che <em>contano</em></h2>
     <p class="s-sub reveal d2" style="color:rgba(255,255,255,0.5)">Ogni cifra rappresenta una persona, un progetto, una speranza concretizzata sul territorio romano.</p>
-
     <div class="stats-row">
-      <div class="stat-card reveal d1">
-        <div class="stat-n" data-target="120">0</div>
-        <div class="stat-l">Persone coinvolte nei percorsi</div>
-      </div>
-      <div class="stat-card reveal d2">
-        <div class="stat-n" data-target="35">0</div>
-        <div class="stat-l">Progetti attivi sul territorio</div>
-      </div>
-      <div class="stat-card reveal d3">
-        <div class="stat-n" data-target="18">0</div>
-        <div class="stat-l">Partner istituzionali</div>
-      </div>
+      <div class="stat-card reveal d1"><div class="stat-n" data-target="120">0</div><div class="stat-l">Persone coinvolte nei percorsi</div></div>
+      <div class="stat-card reveal d2"><div class="stat-n" data-target="35">0</div><div class="stat-l">Progetti attivi sul territorio</div></div>
+      <div class="stat-card reveal d3"><div class="stat-n" data-target="18">0</div><div class="stat-l">Partner istituzionali</div></div>
     </div>
-
     <div class="chart-wrap reveal d2">
       <div class="chart-header">
         <div class="chart-title">Crescita mensile dei partecipanti</div>
@@ -1182,39 +1373,22 @@ footer {
     <div class="s-tag sage reveal">Area operativa</div>
     <h2 class="s-title reveal d1">I nostri <em>progetti</em></h2>
     <p class="s-sub reveal d2">Iniziative concrete pensate per rispondere ai bisogni reali del territorio e delle persone.</p>
-
     <div class="progetti-grid">
       <div class="proj-card reveal d1">
         <div class="proj-top green">🌿</div>
-        <div class="proj-body">
-          <div class="proj-tag green">Inclusione</div>
-          <h3>Percorsi lavorativi</h3>
-          <p>Accompagnamento personalizzato verso l'inserimento professionale per persone in situazione di fragilità.</p>
-        </div>
+        <div class="proj-body"><div class="proj-tag green">Inclusione</div><h3>Percorsi lavorativi</h3><p>Accompagnamento personalizzato verso l'inserimento professionale per persone in situazione di fragilità.</p></div>
       </div>
       <div class="proj-card reveal d2">
         <div class="proj-top blue">📖</div>
-        <div class="proj-body">
-          <div class="proj-tag blue">Formazione</div>
-          <h3>Formazione sociale</h3>
-          <p>Corsi e workshop per lo sviluppo di competenze pratiche e relazionali utili alla vita quotidiana.</p>
-        </div>
+        <div class="proj-body"><div class="proj-tag blue">Formazione</div><h3>Formazione sociale</h3><p>Corsi e workshop per lo sviluppo di competenze pratiche e relazionali utili alla vita quotidiana.</p></div>
       </div>
       <div class="proj-card reveal d3">
         <div class="proj-top amber">✂️</div>
-        <div class="proj-body">
-          <div class="proj-tag amber">Artigianato</div>
-          <h3>Laboratori creativi</h3>
-          <p>Spazi di espressione e produzione artigianale locale, dove il lavoro manuale diventa autonomia.</p>
-        </div>
+        <div class="proj-body"><div class="proj-tag amber">Artigianato</div><h3>Laboratori creativi</h3><p>Spazi di espressione e produzione artigianale locale, dove il lavoro manuale diventa autonomia.</p></div>
       </div>
       <div class="proj-card reveal d4">
         <div class="proj-top rose">🤝</div>
-        <div class="proj-body">
-          <div class="proj-tag rose">Comunità</div>
-          <h3>Produzioni locali</h3>
-          <p>Iniziative di economia solidale che valorizzano le risorse del territorio e creano lavoro sostenibile.</p>
-        </div>
+        <div class="proj-body"><div class="proj-tag rose">Comunità</div><h3>Produzioni locali</h3><p>Iniziative di economia solidale che valorizzano le risorse del territorio e creano lavoro sostenibile.</p></div>
       </div>
     </div>
   </div>
@@ -1226,40 +1400,21 @@ footer {
     <div class="s-tag reveal">Voci dal territorio</div>
     <h2 class="s-title reveal d1">Chi ha <em>scelto</em> Nova PONTIS</h2>
     <p class="s-sub reveal d2">Le esperienze di chi lavora e collabora con noi ogni giorno.</p>
-
     <div class="testi-grid">
       <div class="testi-card reveal d1">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">La cooperativa dimostra grande professionalità nella gestione dei progetti sociali. Un partner affidabile e competente per il nostro ente.</p>
-        <div class="testi-author">
-          <div class="testi-av">E</div>
-          <div>
-            <div class="testi-name">Ente pubblico partner</div>
-            <div class="testi-role">Roma Capitale — Progetto Inclusione</div>
-          </div>
-        </div>
+        <div class="testi-author"><div class="testi-av">E</div><div><div class="testi-name">Ente pubblico partner</div><div class="testi-role">Roma Capitale — Progetto Inclusione</div></div></div>
       </div>
       <div class="testi-card reveal d2">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">I laboratori formativi mi hanno dato gli strumenti che cercavo. Un percorso umano oltre che professionale, fatto di ascolto e rispetto.</p>
-        <div class="testi-author">
-          <div class="testi-av">M</div>
-          <div>
-            <div class="testi-name">Marco R.</div>
-            <div class="testi-role">Partecipante — laboratorio artigianato</div>
-          </div>
-        </div>
+        <div class="testi-author"><div class="testi-av">M</div><div><div class="testi-name">Marco R.</div><div class="testi-role">Partecipante — laboratorio artigianato</div></div></div>
       </div>
       <div class="testi-card reveal d3">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">Progetti ben strutturati, con impatto reale e misurabile sul territorio. Siamo orgogliosi di collaborare con una realtà così solida.</p>
-        <div class="testi-author">
-          <div class="testi-av">A</div>
-          <div>
-            <div class="testi-name">Associazione partner</div>
-            <div class="testi-role">Terzo settore — Roma Sud</div>
-          </div>
-        </div>
+        <div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">Associazione partner</div><div class="testi-role">Terzo settore — Roma Sud</div></div></div>
       </div>
     </div>
   </div>
@@ -1271,93 +1426,28 @@ footer {
     <div class="s-tag reveal" style="background:rgba(201,168,76,0.1);color:var(--gold)">Parliamo insieme</div>
     <h2 class="s-title reveal d1" style="color:#fff">Contatta <em>Nova PONTIS</em></h2>
     <p class="s-sub reveal d2">Per collaborazioni istituzionali, informazioni sui progetti o percorsi di inclusione lavorativa.</p>
-
     <div class="contatti-grid">
       <div class="info-blocks reveal-l">
-
-        <!-- SEDE PRINCIPALE -->
-        <div class="info-block">
-          <div class="info-icon">📍</div>
-          <div>
-            <div class="info-label">Sede principale</div>
-            <div class="info-value">Via Gaio Melisso 57<br>00175 Roma (RM)</div>
-          </div>
-        </div>
-
-        <!-- SEDE SECONDARIA -->
-        <div class="info-block" style="background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.18)">
-          <div class="info-icon" style="background:rgba(201,168,76,0.12)">📍</div>
-          <div>
-            <div class="info-label">Sede secondaria</div>
-            <div class="info-value">Via dei Marrucini 51<br>65127 Pescara (PE)</div>
-          </div>
-        </div>
-
-        <div class="info-block">
-          <div class="info-icon">✉️</div>
-          <div>
-            <div class="info-label">Email</div>
-            <div class="info-value"><a href="mailto:cooperativa@novapontis.it">cooperativa@novapontis.it</a></div>
-          </div>
-        </div>
-        <div class="info-block">
-          <div class="info-icon">📬</div>
-          <div>
-            <div class="info-label">PEC</div>
-            <div class="info-value"><a href="mailto:novpontis@pec.it">novpontis@pec.it</a></div>
-          </div>
-        </div>
-        <div class="info-block">
-          <div class="info-icon">🏛️</div>
-          <div>
-            <div class="info-label">Partita IVA</div>
-            <div class="info-value">18226531004</div>
-          </div>
-        </div>
-        <div class="info-block" style="background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.2)">
-          <div class="info-icon" style="background:rgba(201,168,76,0.2)">⏰</div>
-          <div>
-            <div class="info-label">Orari</div>
-            <div class="info-value">Lun – Ven · 9:00 – 18:00<br>Risposta entro 48 ore lavorative</div>
-          </div>
-        </div>
+        <div class="info-block"><div class="info-icon">📍</div><div><div class="info-label">Sede principale</div><div class="info-value">Via Gaio Melisso 57<br>00175 Roma (RM)</div></div></div>
+        <div class="info-block" style="background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.18)"><div class="info-icon" style="background:rgba(201,168,76,0.12)">📍</div><div><div class="info-label">Sede secondaria</div><div class="info-value">Via dei Marrucini 51/53<br>65127 Pescara (PE)</div></div></div>
+        <div class="info-block"><div class="info-icon">✉️</div><div><div class="info-label">Email</div><div class="info-value"><a href="mailto:cooperativa@novapontis.it">cooperativa@novapontis.it</a></div></div></div>
+        <div class="info-block"><div class="info-icon">📬</div><div><div class="info-label">PEC</div><div class="info-value"><a href="mailto:novapontis.soc.coop@pec.it">novapontis.soc.coop@pec.it</a></div></div></div>
+        <div class="info-block"><div class="info-icon">📞</div><div><div class="info-label">Referenti</div><div class="info-value">Luca Forti: 347 319 8198<br>Giuseppe Cannale: 329 5517003</div></div></div>
+        <div class="info-block" style="background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.2)"><div class="info-icon" style="background:rgba(201,168,76,0.2)">⏰</div><div><div class="info-label">Orari</div><div class="info-value">Lun – Ven · 9:00 – 18:00<br>Risposta entro 48 ore lavorative</div></div></div>
       </div>
-
       <div class="reveal-r">
-        <form
-          class="contact-form"
-          action="https://formsubmit.co/cooperativa@novapontis.it"
-          method="POST"
-          id="contactForm"
-          onsubmit="handleSubmit(event)"
-        >
+        <form class="contact-form" action="https://formsubmit.co/cooperativa@novapontis.it" method="POST" id="contactForm" onsubmit="handleSubmit(event)">
           <input type="hidden" name="_subject" value="📩 Nuovo messaggio dal sito Nova PONTIS">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_next" value="about:blank">
-
           <div class="f-row">
-            <div>
-              <label class="f-label">Nome</label>
-              <input class="f-input" name="Nome" placeholder="Mario" required>
-            </div>
-            <div>
-              <label class="f-label">Cognome</label>
-              <input class="f-input" name="Cognome" placeholder="Rossi">
-            </div>
+            <div><label class="f-label">Nome</label><input class="f-input" name="Nome" placeholder="Mario" required></div>
+            <div><label class="f-label">Cognome</label><input class="f-input" name="Cognome" placeholder="Rossi"></div>
           </div>
-          <div>
-            <label class="f-label">Email</label>
-            <input class="f-input" name="Email" type="email" placeholder="mario@email.it" required>
-          </div>
-          <div>
-            <label class="f-label">Oggetto</label>
-            <input class="f-input" name="Oggetto" placeholder="Collaborazione / Informazioni / Altro">
-          </div>
-          <div>
-            <label class="f-label">Messaggio</label>
-            <textarea class="f-textarea" name="Messaggio" placeholder="Raccontaci il tuo progetto o la tua richiesta..." required></textarea>
-          </div>
+          <div><label class="f-label">Email</label><input class="f-input" name="Email" type="email" placeholder="mario@email.it" required></div>
+          <div><label class="f-label">Oggetto</label><input class="f-input" name="Oggetto" placeholder="Collaborazione / Informazioni / Altro"></div>
+          <div><label class="f-label">Messaggio</label><textarea class="f-textarea" name="Messaggio" placeholder="Raccontaci il tuo progetto o la tua richiesta..." required></textarea></div>
           <button class="send-btn" type="submit" id="sendBtn">
             <span id="sendBtnText">Invia messaggio →</span>
             <span id="sendBtnSpinner" style="display:none">⏳ Invio in corso...</span>
@@ -1382,31 +1472,25 @@ footer {
     <div class="footer-col">
       <h5>Navigazione</h5>
       <a href="#chi-siamo">Chi siamo</a>
+      <a href="#servizi" style="color:var(--gold2)">Servizi</a>
       <a href="#impatto">Il nostro impatto</a>
       <a href="#progetti">Progetti</a>
-      <a href="#testimonianze">Testimonianze</a>
       <a href="#5x1000" style="color:var(--gold)">5×1000</a>
       <a href="#contatti">Contatti</a>
     </div>
     <div class="footer-col">
       <h5>Contatti</h5>
       <a href="mailto:cooperativa@novapontis.it">Email ordinaria</a>
-      <a href="mailto:novpontis@pec.it">PEC certificata</a>
-      <p style="margin-top:8px">
-        <strong style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.5px">SEDE PRINCIPALE</strong><br>
-        Via Gaio Melisso 57<br>00175 Roma
-      </p>
-      <p style="margin-top:10px">
-        <strong style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.5px">SEDE SECONDARIA</strong><br>
-        Via dei Marrucini 51<br>65127 Pescara (PE)
-      </p>
+      <a href="mailto:novapontis.soc.coop@pec.it">PEC certificata</a>
+      <p style="margin-top:8px"><strong style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.5px">SEDE PRINCIPALE</strong><br>Via Gaio Melisso 57<br>00175 Roma</p>
+      <p style="margin-top:10px"><strong style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.5px">SEDE SECONDARIA</strong><br>Via dei Marrucini 51/53<br>65127 Pescara (PE)</p>
     </div>
     <div class="footer-col">
       <h5>Dati societari</h5>
       <p>P. IVA 18226531004</p>
       <p style="margin-top:8px">Iscritta al Registro<br>del Terzo Settore</p>
-      <p style="margin-top:12px; padding:10px 14px; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); border-radius:10px;">
-        <strong style="color:var(--gold); font-size:11px; letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:4px;">5×1000</strong>
+      <p style="margin-top:12px;padding:10px 14px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:10px;">
+        <strong style="color:var(--gold);font-size:11px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px;">5×1000</strong>
         CF: <strong style="color:rgba(255,255,255,0.8)">18226531004</strong>
       </p>
     </div>
@@ -1420,7 +1504,7 @@ footer {
 <script>
 // ── LOADER
 window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('hide'), 5000);
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 3000);
 });
 
 // ── HEADER SCROLL
@@ -1469,7 +1553,6 @@ const monthlyData = [
   [20,30,40,55],[25,35,50,70],[28,40,60,80],[30,45,70,90],
   [35,50,80,100],[38,55,90,110],[40,60,100,115],[45,70,110,120]
 ];
-
 const ctx = document.getElementById('impactChart').getContext('2d');
 const impactChart = new Chart(ctx, {
   type: 'line',
@@ -1496,7 +1579,6 @@ const impactChart = new Chart(ctx, {
     }
   }
 });
-
 const btnWrap = document.getElementById('monthBtns');
 months.forEach((m, i) => {
   const b = document.createElement('button');
@@ -1515,24 +1597,15 @@ months.forEach((m, i) => {
 function copyCF() {
   navigator.clipboard.writeText('18226531004').then(() => {
     const btn = document.getElementById('copyCF');
-    btn.textContent = '✅ Codice copiato!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = '📋 Copia codice fiscale';
-      btn.classList.remove('copied');
-    }, 2500);
+    btn.textContent = '✅ Codice copiato!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copia codice fiscale'; btn.classList.remove('copied'); }, 2500);
   });
 }
-
 function copyIBAN() {
   navigator.clipboard.writeText('IT11T0623003216100009379 6184').then(() => {
     const btn = document.getElementById('copyIBAN');
-    btn.textContent = '✅ IBAN copiato!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = '📋 Copia IBAN';
-      btn.classList.remove('copied');
-    }, 2500);
+    btn.textContent = '✅ IBAN copiato!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copia IBAN'; btn.classList.remove('copied'); }, 2500);
   });
 }
 
@@ -1541,38 +1614,76 @@ async function handleSubmit(e) {
   e.preventDefault();
   const form = document.getElementById('contactForm');
   const btn = document.getElementById('sendBtn');
-  const btnText = document.getElementById('sendBtnText');
-  const btnSpinner = document.getElementById('sendBtnSpinner');
-
   btn.disabled = true;
-  btnText.style.display = 'none';
-  btnSpinner.style.display = 'inline';
-
+  document.getElementById('sendBtnText').style.display = 'none';
+  document.getElementById('sendBtnSpinner').style.display = 'inline';
   try {
     const res = await fetch('https://formsubmit.co/ajax/cooperativa@novapontis.it', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
+      method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
     });
     const json = await res.json();
     if (json.success === 'true' || json.success === true) {
       form.style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
-    } else {
-      throw new Error('send failed');
-    }
+    } else throw new Error('send failed');
   } catch {
     btn.disabled = false;
-    btnText.style.display = 'inline';
-    btnSpinner.style.display = 'none';
-    const old = form.querySelector('.err-msg');
-    if (old) old.remove();
-    const d = document.createElement('div');
-    d.className = 'err-msg';
-    d.style.cssText = 'margin-top:12px;padding:12px 16px;border-radius:10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;font-size:14px;text-align:center';
-    d.textContent = '⚠️ Errore nell\'invio. Scrivici direttamente a cooperativa@novapontis.it';
-    form.appendChild(d);
+    document.getElementById('sendBtnText').style.display = 'inline';
+    document.getElementById('sendBtnSpinner').style.display = 'none';
   }
+}
+
+// ── SERVIZI TABS
+function showPanel(name) {
+  document.querySelectorAll('.s-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (name === 'pdf' && !pdfLoaded) loadPdf();
+}
+
+// ── PDF VIEWER
+let pdfDoc = null, pdfPage = 1, pdfLoaded = false;
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+async function loadPdf() {
+  pdfLoaded = true;
+  try {
+    pdfDoc = await pdfjsLib.getDocument('servizi.pdf').promise;
+    document.getElementById('pdfPageCount').textContent = pdfDoc.numPages;
+    document.getElementById('pdfNext').disabled = pdfDoc.numPages <= 1;
+    await renderPage(1);
+  } catch(e) {
+    document.getElementById('pdfLoading').innerHTML = '⚠️ PDF non trovato. <a href="servizi.pdf" download style="color:var(--gold)">Scaricalo qui</a>';
+  }
+}
+
+async function renderPage(num) {
+  const canvas = document.getElementById('pdfCanvas');
+  const loading = document.getElementById('pdfLoading');
+  loading.style.display = 'block';
+  canvas.style.display = 'none';
+
+  const page = await pdfDoc.getPage(num);
+  const viewport = page.getViewport({ scale: 1.8 });
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+
+  await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+
+  loading.style.display = 'none';
+  canvas.style.display = 'block';
+  document.getElementById('pdfPageNum').textContent = num;
+  document.getElementById('pdfPrev').disabled = num <= 1;
+  document.getElementById('pdfNext').disabled = num >= pdfDoc.numPages;
+}
+
+function changePdfPage(delta) {
+  const newPage = pdfPage + delta;
+  if (newPage < 1 || newPage > pdfDoc.numPages) return;
+  pdfPage = newPage;
+  renderPage(pdfPage);
 }
 </script>
 </body>
